@@ -1,0 +1,4 @@
+enum CardSideIndicator{
+  FRONTSIDE,
+  BACKSIDE
+}
