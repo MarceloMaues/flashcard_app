@@ -3,11 +3,11 @@ import 'dart:math';
 
 class Deck{
 
-  List<FlashCard> _deckCards;
-  String _deckName;
+  List<FlashCard>? _deckCards = null;
+  String _deckName = '';
 
   Deck(String name){
-    this._deckName=name;
+      this._deckName=name;
   }
   void setDeckName(String name){
     this._deckName = name;
@@ -18,7 +18,11 @@ class Deck{
   }
 
   int getDeckSize(){
-    return _deckCards.length;
+    int size = 0;
+    if(_deckCards!=null){
+      size = _deckCards!.length;
+    }
+    return size;
   }
 
   void renameDeck(String name){
@@ -26,21 +30,21 @@ class Deck{
   }
 
   FlashCard getFlashCard(int local){
-    return this._deckCards[local];
+    return this._deckCards![local];
   }
 
   void addFlashCard(FlashCard card){
-    this._deckCards.add(card);
+    this._deckCards!.add(card);
   }
 
   void removeFlashCard(FlashCard card){
-    this._deckCards.remove(card);
+    this._deckCards!.remove(card);
   }
 
   FlashCard getRandomCard(){
     Random random = new Random();
-    int randomNumber = random.nextInt(_deckCards.length);
-    return this._deckCards[randomNumber];
+    int randomNumber = random.nextInt(_deckCards!.length);
+    return this._deckCards![randomNumber];
   }
 
   sortDeck(){

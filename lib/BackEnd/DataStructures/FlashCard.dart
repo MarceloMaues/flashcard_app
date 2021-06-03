@@ -3,13 +3,13 @@ import 'package:flashcard_app/BackEnd/DataStructures/CardSideIndicator.dart';
 const String separator = "=";
 
 class FlashCard {
-  String _frontSide, _backSide;
-  CardSideIndicator _openSide;
+  String _frontSide = '',
+         _backSide  = '';
+  CardSideIndicator _openSide = CardSideIndicator.FRONTSIDE;
 
   FlashCard(String back, String front) {
     this._frontSide = front;
     this._backSide = back;
-    this._openSide = CardSideIndicator.FRONTSIDE;
   }
 
   void setFrontSide(String side) {
