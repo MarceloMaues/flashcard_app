@@ -48,6 +48,8 @@ class Deck{
   }
 
   sortDeck(){
+    int low, high;
+    FlashCard pivot;
 
   }
 }
