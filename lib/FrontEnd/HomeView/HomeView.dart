@@ -1,13 +1,14 @@
+import 'package:flashcard_app/Controller.dart';
 import 'package:flashcard_app/FrontEnd/HomeView/Containers/DecksAvailable.dart';
 import 'package:flashcard_app/FrontEnd/HomeView/Containers/BottomBar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:provider/provider.dart';
 
 
 // ignore: must_be_immutable
 class HomeView extends StatelessWidget{
   HomeView({Key? key}) : super(key: key);
-
-  List<String> deck = [];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,9 +35,13 @@ class HomeView extends StatelessWidget{
                 )
             )
         ),
-        body:DecksAvailable(key: key),
+        body: Consumer<Controller>(
+            builder: (context, controller ,child){
+              return DecksAvailable(context: context, entries: controller.decks);
+            }
+        ),
         floatingActionButton: FloatingActionButton(
-          onPressed: () {print('foda-se');},
+          onPressed: () => Provider.of<Controller>(context, listen: false).addDeck(),
           tooltip: 'Increment',
           child: Icon(Icons.add),
           backgroundColor: Color(0xff8FDC97),

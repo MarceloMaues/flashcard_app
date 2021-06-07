@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flashcard_app/Controller.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 
 class BottomBar extends StatelessWidget {
-  BottomBar({Key? key}) : super(key: key);
-
+  const BottomBar({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(

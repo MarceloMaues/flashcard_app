@@ -1,6 +1,9 @@
+import 'package:mobx/mobx.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class Menu{
+  @observable
   List<String> _decks =[
     '1',
     '2',
@@ -23,8 +26,8 @@ class Menu{
     '9',
     '10'
   ];
-  List<String> get decks => getMyDecks();
-  
+
+
   void teste(String batata){
     _decks.add(batata);
   }

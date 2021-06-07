@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flashcard_app/FrontEnd/HomeView/HomeView.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:provider/provider.dart';
+import 'Controller.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => Controller(),
+      child: MyApp(),
+     )
+  );
 }
 
 class MyApp extends StatelessWidget {
