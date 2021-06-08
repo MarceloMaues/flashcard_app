@@ -4,13 +4,14 @@ import 'package:flashcard_app/FrontEnd/HomeView/HomeView.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 import 'Controller.dart';
+import 'FrontEnd/CreateDeckView/CreateDeckView.dart';
 
 void main() {
   runApp(
     ChangeNotifierProvider(
-      create: (context) => Controller(),
-      child: MyApp(),
-     )
+        create: (context) => Controller(),
+        child: MyApp(),
+      )
   );
 }
 
@@ -21,6 +22,9 @@ class MyApp extends StatelessWidget {
       title: 'FlashCards',//Só serve pra dar nome na página web
       debugShowCheckedModeBanner: false,
       home: HomeView(),
+      routes:{
+        '/CreateDeckView':(context) => CreateDeckView()
+      },
     );
   }
 }

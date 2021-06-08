@@ -3,7 +3,7 @@ import 'dart:math';
 
 class Deck{
 
-  List<FlashCard>? _deckCards = null;
+  List<FlashCard> _deckCards = [];
   String _deckName = '';
 
   Deck(String name){
@@ -18,11 +18,7 @@ class Deck{
   }
 
   int getDeckSize(){
-    int size = 0;
-    if(_deckCards!=null){
-      size = _deckCards!.length;
-    }
-    return size;
+    return _deckCards.length;
   }
 
   void renameDeck(String name){
@@ -30,26 +26,25 @@ class Deck{
   }
 
   FlashCard getFlashCard(int local){
-    return this._deckCards![local];
+    return this._deckCards[local];
   }
 
   void addFlashCard(FlashCard card){
-    this._deckCards!.add(card);
+    this._deckCards.add(card);
   }
 
   void removeFlashCard(FlashCard card){
-    this._deckCards!.remove(card);
+    this._deckCards.remove(card);
   }
 
   FlashCard getRandomCard(){
     Random random = new Random();
-    int randomNumber = random.nextInt(_deckCards!.length);
-    return this._deckCards![randomNumber];
+    int randomNumber = random.nextInt(_deckCards.length);
+    return this._deckCards[randomNumber];
   }
 
-  sortDeck(){
-    int low, high;
-    FlashCard pivot;
+  shuffle(){
+
 
   }
 }

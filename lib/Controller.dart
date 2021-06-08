@@ -1,8 +1,13 @@
+import 'package:flashcard_app/BackEnd/DataStructures/FlashCard.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:flashcard_app/BackEnd/Menu.dart';
+import 'BackEnd/DataStructures/Deck.dart';
 
 class Controller extends ChangeNotifier {
+  List<String> _myDeckNames = [];
+  Deck? _selectedDeck;
+
   //static Controller get to=>  Get.find();
   //final Menu _model = Menu();
 
@@ -27,14 +32,44 @@ class Controller extends ChangeNotifier {
     '9',
     '10'
   ];
+
   List<String> get decks => _decks;
 
+  void createNewDeck(String deckName){
+    _selectedDeck = Deck(deckName);
+  }
 
-  //Menu get model => _model;
+  void addCard(String frontName,String backName){
+    _selectedDeck!.addFlashCard(FlashCard(frontName, backName));
+    notifyListeners();
+  }
 
+  void removeCard(String frontName,String backName){
+    _selectedDeck!.addFlashCard(FlashCard(frontName, backName));
+    notifyListeners();
+  }
+
+  void saveDeck(){
+    if(_selectedDeck!.getDeckSize()>0){
+      //Salvar deck
+    }
+    if(!_myDeckNames.contains(_selectedDeck)){
+      _myDeckNames.add(_selectedDeck!.getDeckName());
+      notifyListeners();
+    }
+  }
+
+  void updateDeck(){
+
+  }
+
+  void oi (){
+
+  }
 
   void addDeck(){
     _decks.add('a');
     notifyListeners();
   }
+
 }

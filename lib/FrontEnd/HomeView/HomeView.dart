@@ -1,9 +1,11 @@
 import 'package:flashcard_app/Controller.dart';
 import 'package:flashcard_app/FrontEnd/HomeView/Containers/DecksAvailable.dart';
 import 'package:flashcard_app/FrontEnd/HomeView/Containers/BottomBar.dart';
+import 'package:flashcard_app/FrontEnd/CreateDeckView/CreateDeckView.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
+
 
 
 // ignore: must_be_immutable
@@ -41,7 +43,9 @@ class HomeView extends StatelessWidget{
             }
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: () => Provider.of<Controller>(context, listen: false).addDeck(),
+          onPressed: (){
+            Navigator.of(context).pushNamed('/CreateDeckView');
+            },//Provider.of<Controller>(context, listen: false).addDeck(),
           tooltip: 'Increment',
           child: Icon(Icons.add),
           backgroundColor: Color(0xff8FDC97),

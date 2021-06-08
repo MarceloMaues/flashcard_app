@@ -18,7 +18,7 @@ class BottomBar extends StatelessWidget {
                   alignment: Alignment.center,
                   foregroundColor: MaterialStateProperty.all<Color>(Color(0xff8FDC97)),
                 ),
-                onPressed: () {},
+                onPressed: () {Navigator.of(context).pushNamed('/poha');},
                 child: Text('Import',
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
