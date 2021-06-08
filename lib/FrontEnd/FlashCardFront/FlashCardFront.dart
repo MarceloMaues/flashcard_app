@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(GameView());
 
-class MyApp extends StatelessWidget {
+class GameView extends StatelessWidget {
+  GameView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Welcome to Flutter',
-      home: Scaffold(
+    return Scaffold(
         backgroundColor: Color.fromRGBO(87, 196, 229, 1),
         appBar: AppBar(
           backgroundColor: Color.fromRGBO(87, 196, 229, 1),
@@ -28,9 +27,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
         body: Center(child: FlashcardFront()),
-      ),
-      debugShowCheckedModeBanner: false,
-    );
+      );
   }
 }
 

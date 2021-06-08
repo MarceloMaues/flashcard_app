@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 import 'Controller.dart';
 import 'FrontEnd/CreateDeckView/CreateDeckView.dart';
+import 'package:flashcard_app/FrontEnd/FlashCardFront/FlashCardFront.dart';
 
 void main() {
   runApp(
@@ -23,7 +24,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: HomeView(),
       routes:{
-        '/CreateDeckView':(context) => CreateDeckView()
+        '/CreateDeckView':(context) => CreateDeckView(),
+        '/GameView':(context) => GameView(),
       },
     );
   }

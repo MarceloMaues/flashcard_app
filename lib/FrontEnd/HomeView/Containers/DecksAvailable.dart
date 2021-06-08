@@ -5,8 +5,6 @@ class DecksAvailable extends StatelessWidget {
   List<String> entries;
   DecksAvailable({Key? key,required BuildContext context,required this.entries}) : super(key: key);
 
-
-
   @override
   Widget build(BuildContext context,) {
     return Scrollbar(
@@ -16,7 +14,7 @@ class DecksAvailable extends StatelessWidget {
           itemBuilder: (BuildContext context, int index) {
             return InkWell(
                 onTap: () {
-                  print("Container clicked: ${entries[index]}");
+                  Navigator.of(context).pushNamed('/GameView');
                 },
                 child: Container(
                     height: 50,

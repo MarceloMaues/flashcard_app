@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flashcard_app/Controller.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:provider/provider.dart';
 
 class BottomBar extends StatelessWidget {
   const BottomBar({Key? key}) : super(key: key);

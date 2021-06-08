@@ -45,7 +45,7 @@ class HomeView extends StatelessWidget{
         floatingActionButton: FloatingActionButton(
           onPressed: (){
             Navigator.of(context).pushNamed('/CreateDeckView');
-            },//Provider.of<Controller>(context, listen: false).addDeck(),
+            },
           tooltip: 'Increment',
           child: Icon(Icons.add),
           backgroundColor: Color(0xff8FDC97),
