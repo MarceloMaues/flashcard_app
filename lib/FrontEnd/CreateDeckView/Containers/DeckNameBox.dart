@@ -87,7 +87,7 @@ class DeckNameBox extends StatelessWidget {
                       animType: AnimType.BOTTOMSLIDE,
                       title: 'Congratulations!',
                       desc: 'You created a deck named '+noSpace,
-                      btnOkOnPress: () {},
+                      btnOkOnPress: () { Navigator.of(context).pushNamed('/EditDeckView');},
                     )..show();
 
                   } catch (e) {

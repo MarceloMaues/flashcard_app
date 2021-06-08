@@ -1,3 +1,4 @@
+import 'package:flashcard_app/FrontEnd/EditDeckView/EditDeckView.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flashcard_app/FrontEnd/HomeView/HomeView.dart';
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
       routes:{
         '/CreateDeckView':(context) => CreateDeckView(),
         '/GameView':(context) => GameView(),
+        '/EditDeckView':(context) => DeckEdit(),
       },
     );
   }

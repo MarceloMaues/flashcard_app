@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(GameView());
 
 class GameView extends StatelessWidget {
   GameView({Key? key}) : super(key: key);
@@ -12,18 +11,17 @@ class GameView extends StatelessWidget {
           backgroundColor: Color.fromRGBO(87, 196, 229, 1),
           actions: [
             IconButton(
-              icon: const Icon(Icons.edit),
+              icon: Icon(Icons.edit),
               color: Colors.white,
               onPressed: (){
-                //Navigator.push(context, new MaterialPageRoute(
-                  //builder: (context) => MyAp()));
+                Navigator.of(context).pushNamed('/EditDeckView');
               },
             ),
           ],
           leading: IconButton(
-            icon: const Icon(Icons.arrow_back_ios_new_sharp),
+            icon: Icon(Icons.arrow_back_ios_new_sharp),
             color: Colors.white,
-            onPressed: () => {print("cavalo")},
+            onPressed: () => {Navigator.of(context).pop()},
           ),
         ),
         body: Center(child: FlashcardFront()),
