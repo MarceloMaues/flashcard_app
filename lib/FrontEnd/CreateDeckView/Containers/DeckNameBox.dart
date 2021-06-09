@@ -1,6 +1,9 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../../Controller.dart';
 
 class DeckNameBox extends StatelessWidget {
   DeckNameBox({Key? key}) : super(key: key);
@@ -80,7 +83,8 @@ class DeckNameBox extends StatelessWidget {
                 String noSpace = deckName.text.trim();
                 if(deckName.text.isNotEmpty && noSpace.isNotEmpty){
                   try {
-                    //save deck + go to edit deck here
+                    Provider.of<Controller>(context,listen:false).createNewDeck(noSpace);
+                    Provider.of<Controller>(context,listen:false).saveDeck();
                     AwesomeDialog(
                       context: context,
                       dialogType: DialogType.SUCCES,

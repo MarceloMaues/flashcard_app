@@ -7,7 +7,7 @@ class Deck{
   String _deckName = '';
 
   Deck(String name){
-      this._deckName=name;
+    this._deckName=name;
   }
   void setDeckName(String name){
     this._deckName = name;

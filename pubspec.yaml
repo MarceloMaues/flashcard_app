@@ -17,6 +17,7 @@ dependencies:
   freezed_annotation: ^0.12.0
   awesome_dialog: ^2.1.0
   mobx: ^2.0.1
+  flutter_tabler_icons: ^1.1.1
 
 dev_dependencies:
   flutter_test:

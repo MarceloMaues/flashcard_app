@@ -7,6 +7,7 @@ import 'BackEnd/DataStructures/Deck.dart';
 class Controller extends ChangeNotifier {
   List<String> _myDeckNames = [];
   Deck? _selectedDeck;
+  List<FlashCard> _selectedCards = [];
 
   //static Controller get to=>  Get.find();
   //final Menu _model = Menu();
