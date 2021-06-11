@@ -10,7 +10,7 @@ class Controller extends ChangeNotifier {
 
   //static Controller get to=>  Get.find();
   //final Menu _model = Menu();
-
+  bool _acertou = false;
   List<String> _decks = ['1',
     '2',
     '3',
@@ -34,6 +34,7 @@ class Controller extends ChangeNotifier {
   ];
 
   List<String> get decks => _decks;
+  bool get acertou=>_acertou;
 
   void createNewDeck(String deckName){
     _selectedDeck = Deck(deckName);
@@ -71,5 +72,10 @@ class Controller extends ChangeNotifier {
     _decks.add('a');
     notifyListeners();
   }
+  void setAcertou(bool a){
+    _acertou=a;
+    notifyListeners();
+  }
 
+ 
 }

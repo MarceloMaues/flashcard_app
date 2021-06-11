@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flip_card/flip_card.dart';
+import 'package:provider/provider.dart';
+import '../../Controller.dart';
+import "Botaos.dart";
 
 class GameView extends StatelessWidget {
   GameView({Key? key}) : super(key: key);
@@ -112,32 +115,35 @@ class FlashcardFront extends StatelessWidget {
                   children: <Widget>[
                     SizedBox(height: 50),
                   ],
-                ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
+                ),Consumer<Controller>(
+                    builder: (context, controller ,child){
+                      return Botaos(context: context,value: controller.acertou,);
+                    })
+                /**Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
                     Container(
-                      child: ElevatedButton(
-                        child: Text("Yes Yes Yes Yes Yes"),
-                        onPressed: () {
-                          counterIsCorrect++;
-                          print(counterIsCorrect);
-                        },
-                      ),
+                    child: ElevatedButton(
+                    child: Text("Yes Yes Yes Yes Yes"),
+                    onPressed: () {
+                    counterIsCorrect++;
+                    print(counterIsCorrect);
+                    },
+                    ),
                     ),
                     SizedBox(width: 50),
                     Container(
-                      child: ElevatedButton(
-                        child: Text("No No No No No No"),
-                        onPressed: () {
-                          counterIsWrong++;
-                          print(counterIsWrong);
-                        },
-                      ),
+                    child: ElevatedButton(
+                    child: Text("No No No No No No"),
+                    onPressed: () {
+                    counterIsWrong++;
+                    print(counterIsWrong);
+                    },
                     ),
-                  ],
-                ),
+                    ),
+                    ],
+                    ),*/
               ],
             )),
       ],
