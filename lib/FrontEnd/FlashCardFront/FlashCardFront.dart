@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:flip_card/flip_card.dart';
 import 'package:provider/provider.dart';
@@ -34,6 +36,7 @@ class GameView extends StatelessWidget {
 
 int counterIsCorrect = 0;
 int counterIsWrong = 0;
+double opacity = 0.0;
 
 class FlashcardFront extends StatelessWidget {
   @override
@@ -68,6 +71,12 @@ class FlashcardFront extends StatelessWidget {
             ]),
         FlipCard(
             direction: FlipDirection.HORIZONTAL,
+            onFlipDone: (status) {
+              print(status);
+              if (status == false){
+                opacity = 1;
+              }
+            },
             front: Column(
               children: <Widget>[
                 Container(
@@ -113,40 +122,29 @@ class FlashcardFront extends StatelessWidget {
                 ),
                 Row(
                   children: <Widget>[
-                    SizedBox(height: 50),
+                    SizedBox(height: 78),
                   ],
-                ),Consumer<Controller>(
-                    builder: (context, controller ,child){
-                      return Botaos(context: context,value: controller.acertou,);
-                    })
-                /**Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                    Container(
-                    child: ElevatedButton(
-                    child: Text("Yes Yes Yes Yes Yes"),
-                    onPressed: () {
-                    counterIsCorrect++;
-                    print(counterIsCorrect);
-                    },
-                    ),
-                    ),
-                    SizedBox(width: 50),
-                    Container(
-                    child: ElevatedButton(
-                    child: Text("No No No No No No"),
-                    onPressed: () {
-                    counterIsWrong++;
-                    print(counterIsWrong);
-                    },
-                    ),
-                    ),
-                    ],
-                    ),*/
+                ),
               ],
             )),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Buttons(),
+          ],
+        )
       ],
     );
+  }
+}
+class Buttons extends StatelessWidget {
+  @override
+  Widget build(BuildContext button) {
+    return Consumer<Controller>(builder: (context, controller, child) {
+      return Botaos(
+        context: context,
+        value: controller.acertou,
+      );
+    });
   }
 }
