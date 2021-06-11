@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class MiniFlashCard  extends StatelessWidget {
@@ -5,46 +6,67 @@ class MiniFlashCard  extends StatelessWidget {
   String teste= 'aa';
   @override
   Widget build(BuildContext context) {
-    return Container(
-          alignment: Alignment.center,
-          margin: EdgeInsets.all(20),
-          padding: EdgeInsets.all(30),
-          decoration: BoxDecoration(
-            color: Color.fromRGBO(87, 196, 229, 1),
-            borderRadius: BorderRadius.all(Radius.circular(20)),
-          ),
-            child:Row ( 
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children:[
-                FractionallySizedBox(
-                  widthFactor: 0.25,
-                  heightFactor: 0.25,
-                  alignment: Alignment.bottomRight,
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.all(Radius.circular(20)),
-                    
-          ), ),),
-          SizedBox(width:50),
-          FractionallySizedBox(
-                  widthFactor: 0.25,
-                  heightFactor: 0.25,
-                  alignment: Alignment.bottomRight,
-                child: 
-          Container(
-            
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.all(Radius.circular(20)),
-          ),
+    return InkWell(
+        onTap: (){},
+        child:Container(
+            padding: EdgeInsets.all(10),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(16),
+                color: Color(0xff57C4E5)),
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children:<Widget>[
+                  Expanded(
+                      child: Container(
+                        padding: EdgeInsets.all(20),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(16),
+                          color: Colors.white,),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text("Front face:",style: TextStyle(color: Color(0xff8FDC97),fontSize: 20),),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            SingleChildScrollView(
+                                scrollDirection: Axis.horizontal,
+                                child:Text("Batataaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa ZUDY",style: TextStyle(fontSize: 25),)),
+                          ],
+                        ),
+                      )
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Expanded(
+                      child: Container(
+                        padding: EdgeInsets.all(20),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(16),
+                          color: Colors.white,),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text("Back face:",style: TextStyle(color: Color(0xff8FDC97),fontSize: 20),),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            SingleChildScrollView(
+                                scrollDirection: Axis.horizontal,
+                                child:Text("Legume",style: TextStyle(fontSize: 25),)),
+                          ],
+                        ),
+                      )
+                  ),
+                ]
+            )
+        )
 
-                ),)
-            ]
-          )
-          
-);
-    
+
+    );
+
   }
 }

@@ -5,25 +5,27 @@ import 'Containers/BottomEditBar.dart';
 
 class DeckEdit extends StatelessWidget {
   DeckEdit({Key? key}) : super(key: key);
-  String joao="joao";
+  String joao="joaoooooooooooooooooooooooooooooooooooooooo";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Color.fromRGBO(87, 196, 229, 1),
-          title: RichText(
+          title: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: RichText(
             text: TextSpan(
               children: [
                 TextSpan(
                   text: joao,
                   style: TextStyle(
-                    color: Color(0xff8FDC97),
+                    color: Colors.white,
                     fontSize: 30,
                   ),
                 ),
               ],
             ),
-          ),
+          ),),
           actions: [
             IconButton(
               icon: Icon(Icons.edit),
@@ -56,20 +58,13 @@ class DeckEdit extends StatelessWidget {
 class CardCreation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Expanded(
-              child: GridView.builder(
-            gridDelegate:
-                SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 1),
-                
-            itemCount: 2,
-            itemBuilder: (BuildContext context, int index) {
-              return MiniFlashCard();
-            },
-          )
-          )
-        ]);
+    return ListView.separated(
+      padding: const EdgeInsets.all(8),
+      itemCount: 10,
+      itemBuilder: (BuildContext context, int index) {
+        return MiniFlashCard();
+      },
+      separatorBuilder: (BuildContext context, int index) => const Divider(),
+    );
   }
 }
