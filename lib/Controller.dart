@@ -1,15 +1,12 @@
 import 'package:flashcard_app/BackEnd/DataStructures/FlashCard.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:get/get.dart';
-import 'package:flashcard_app/BackEnd/Menu.dart';
 import 'BackEnd/DataStructures/Deck.dart';
 
 class Controller extends ChangeNotifier {
   List<String> _myDeckNames = [];
   Deck? _selectedDeck;
 
-  //static Controller get to=>  Get.find();
-  //final Menu _model = Menu();
+
 
   List<String> _decks = ['1',
     '2',
