@@ -1,9 +1,11 @@
 import 'package:flashcard_app/BackEnd/DataStructures/FlashCard.dart';
 import 'package:flutter/cupertino.dart';
 import 'BackEnd/DataStructures/Deck.dart';
+import 'package:flashcard_app/BackEnd/IO/DeckFilesManipulation.dart';
 
 class Controller extends ChangeNotifier {
-  List<String> _myDeckNames = [];
+  DeckFilesManipulation filesIO = DeckFilesManipulation();
+  List<String> deckNames = [];
   Deck? _selectedDeck;
 
 
@@ -50,8 +52,8 @@ class Controller extends ChangeNotifier {
     if(_selectedDeck!.getDeckSize()>0){
       //Salvar deck
     }
-    if(!_myDeckNames.contains(_selectedDeck)){
-      _myDeckNames.add(_selectedDeck!.getDeckName());
+    if(!deckNames.contains(_selectedDeck)){
+      deckNames.add(_selectedDeck!.getDeckName());
       notifyListeners();
     }
   }
@@ -60,8 +62,13 @@ class Controller extends ChangeNotifier {
 
   }
 
-  void oi (){
-
+  void getDeckNames() {
+      filesIO.readListNameDecks().then((result){
+        if (result is List<String>){
+          deckNames= result;
+          notifyListeners();
+        }
+      });
   }
 
   void addDeck(){

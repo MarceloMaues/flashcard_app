@@ -39,7 +39,8 @@ class HomeView extends StatelessWidget{
         ),
         body: Consumer<Controller>(
             builder: (context, controller ,child){
-              return DecksAvailable(context: context, entries: controller.decks);
+              controller.getDeckNames();
+              return DecksAvailable(context: context, entries: controller.deckNames);
             }
         ),
         floatingActionButton: FloatingActionButton(

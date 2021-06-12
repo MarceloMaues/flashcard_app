@@ -5,7 +5,7 @@ import 'package:flashcard_app/BackEnd/IO/DeckFilesStructures.dart';
 
 class DeckFilesManipulation {
   //le o arquivo NameDecks e retorna uma lista de strings
-  Future<List<String>> _readListNameDecks() async {
+  Future<List<String>> readListNameDecks() async {
     var file = File('File/nameDecks.json');
     String contents;
     List<String> names = [];
@@ -25,7 +25,7 @@ class DeckFilesManipulation {
   }
 
   //le o arquivo NameDecks e retorna uma String no formato json
-  Future<String> _readStringNameDecks() async {
+  Future<String> readStringNameDecks() async {
     var file = File('File/nameDecks.json');
     String contents = '';
     try {
@@ -41,7 +41,7 @@ class DeckFilesManipulation {
 
   //escreve no arquivo
   //com o seguinte formato [ingles, portugues, espanhol]
-  Future<bool> _writeFileInNameDecks(String write) async {
+  Future<bool> writeFileInNameDecks(String write) async {
     var file = File('File/nameDecks.json');
     try {
       if (await file.exists()) {
@@ -62,7 +62,7 @@ class DeckFilesManipulation {
 
   //reescrevo o arquivo
   //com o seguinte formato [ingles, portugues, espanhol]
-  Future<bool> _overWriteFileInNameDecks(String write) async {
+  Future<bool> overWriteFileInNameDecks(String write) async {
     var file = File('File/nameDecks.json');
     try {
       if (await file.exists()) {
@@ -80,7 +80,7 @@ class DeckFilesManipulation {
     }
   }
 
-  Future<int> _createJsonFile(String nameFile) async {
+  Future<int> createJsonFile(String nameFile) async {
     var file = File('File/' + nameFile + '.json');
     try {
       //verifica ja existe um arquivo com o mesmo nome
@@ -98,7 +98,7 @@ class DeckFilesManipulation {
   }
 
   //delete o arquivo json
-  Future<int> _deleteJsonFile(String nameFile) async {
+  Future<int> deleteJsonFile(String nameFile) async {
     var file = File('File/' + nameFile + '.json');
     try {
       //verifica se existe o arquivo
@@ -118,7 +118,7 @@ class DeckFilesManipulation {
   }
 
   //ler arquivo json
-  Future<String> _readStringFile(String nameFile) async {
+  Future<String> readStringFile(String nameFile) async {
     var file = File('File/' + nameFile + '.json');
     String contents = '';
     try {
@@ -134,7 +134,7 @@ class DeckFilesManipulation {
   }
 
   //le o arquivo deck e retorna uma lista de strings
-  Future<List<String>> _readListFile(String nameFile) async {
+  Future<List<String>> readListFile(String nameFile) async {
     var file = File('File/' + nameFile + '.json');
     String contents;
     List<String> deck = [];
@@ -154,7 +154,7 @@ class DeckFilesManipulation {
   }
 
   //reescrever arquivo json
-  Future<File> _writeFile(String nameDeck, String write) async {
+  Future<File> writeFile(String nameDeck, String write) async {
     var file = File('File/' + nameDeck + '.json');
 
     Map<String, dynamic> userMap = jsonDecode(write);
