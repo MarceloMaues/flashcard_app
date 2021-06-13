@@ -5,18 +5,24 @@ import 'package:provider/provider.dart';
 
 import '../../../Controller.dart';
 
-class DeckNameBox extends StatelessWidget {
-  DeckNameBox({Key? key}) : super(key: key);
-  TextEditingController deckName = TextEditingController();
+class CardNameBack extends StatelessWidget {
+  CardNameBack({Key? key}) : super(key: key);
+  TextEditingController cardNameBack = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-
+    return Scaffold(
+ backgroundColor: Color.fromRGBO(87, 196, 229, 1),
+        appBar: AppBar(
+          backgroundColor: Color.fromRGBO(87, 196, 229, 1),
+          actions: [],
+        ),
+        body: Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Row(
+            
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -26,7 +32,7 @@ class DeckNameBox extends StatelessWidget {
                 child: Align(
                   alignment: Alignment.center,
                   child: Text(
-                    'Name the new deck:',
+                    'Back side',
                     style: TextStyle(
                       fontSize: 25.0,
                       color: Colors.white,
@@ -45,11 +51,9 @@ class DeckNameBox extends StatelessWidget {
           child: ConstrainedBox(
             constraints: BoxConstraints(maxWidth: 150),
             child: TextField(
-              controller: deckName,
-              maxLength: 30,
-              decoration: InputDecoration(
-                labelText: 'Deck name',
-              ),
+              controller: cardNameBack,
+              maxLength: 100,
+         
               onSubmitted: (String teste) {
                 print(teste);
               },
@@ -69,25 +73,28 @@ class DeckNameBox extends StatelessWidget {
           height: 200,
 
         ),
+        Row(
+          children: <Widget>[
             SizedBox(height: 100),
+          ],
+        ),
         Row(
           crossAxisAlignment: CrossAxisAlignment.end,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             ElevatedButton(
               onPressed: () {
-                String noSpace = deckName.text.trim();
-                if(deckName.text.isNotEmpty && noSpace.isNotEmpty){
+                String noSpace = cardNameBack.text.trim();
+                if(cardNameBack.text.isNotEmpty && noSpace.isNotEmpty){
                   try {
-                    Provider.of<Controller>(context,listen:false).createNewDeck(noSpace);
-                    Provider.of<Controller>(context,listen:false).saveDeck();
+                  
                     AwesomeDialog(
                       context: context,
                       dialogType: DialogType.SUCCES,
                       animType: AnimType.BOTTOMSLIDE,
                       title: 'Congratulations!',
-                      desc: 'You created a deck named '+noSpace,
-                      btnOkOnPress: () { Navigator.of(context).pushNamed('/EditDeckView');},
+                      desc: ' ',
+                      btnOkOnPress: () { },
                     )..show();
 
                   } catch (e) {
@@ -101,7 +108,7 @@ class DeckNameBox extends StatelessWidget {
                     )..show();
 
                   }
-                  print(noSpace);
+                  
                 }else{
                   AwesomeDialog(
                     context: context,
@@ -126,9 +133,7 @@ class DeckNameBox extends StatelessWidget {
           ],
         ),
       ],
+        ),
     );
   }
-
-
-
 }

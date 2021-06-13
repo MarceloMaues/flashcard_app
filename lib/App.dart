@@ -1,3 +1,5 @@
+import 'package:flashcard_app/FrontEnd/CardBack.dart';
+import 'package:flashcard_app/FrontEnd/CardFront.dart';
 import 'package:flashcard_app/FrontEnd/EditDeckView/EditDeckView.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -7,6 +9,7 @@ import 'package:provider/provider.dart';
 import 'Controller.dart';
 import 'FrontEnd/CreateDeckView/CreateDeckView.dart';
 import 'package:flashcard_app/FrontEnd/FlashCardFront/FlashCardFront.dart';
+
 
 void main() {
   runApp(
@@ -28,6 +31,8 @@ class MyApp extends StatelessWidget {
         '/CreateDeckView':(context) => CreateDeckView(),
         '/GameView':(context) => GameView(),
         '/EditDeckView':(context) => DeckEdit(),
+        '/CardFrontView': (context)=> CardNameFront(),
+        '/CardBackView': (context)=>CardNameBack(),
       },
     );
   }

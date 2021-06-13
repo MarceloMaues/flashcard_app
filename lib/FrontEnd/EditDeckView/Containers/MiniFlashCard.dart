@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class MiniFlashCard  extends StatelessWidget {
   MiniFlashCard({Key? key}) : super(key: key);
@@ -7,7 +8,9 @@ class MiniFlashCard  extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-        onTap: (){},
+        onTap: (){
+           Navigator.of(context).pushNamed('/CardFrontView');
+           },
         child:Container(
             padding: EdgeInsets.all(10),
             decoration: BoxDecoration(
