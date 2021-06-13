@@ -36,7 +36,6 @@ class GameView extends StatelessWidget {
 
 int counterIsCorrect = 0;
 int counterIsWrong = 0;
-double opacity = 0.0;
 
 class FlashcardFront extends StatelessWidget {
   @override
@@ -73,9 +72,6 @@ class FlashcardFront extends StatelessWidget {
             direction: FlipDirection.HORIZONTAL,
             onFlipDone: (status) {
               print(status);
-              if (status == false){
-                opacity = 1;
-              }
             },
             front: Column(
               children: <Widget>[
@@ -97,7 +93,7 @@ class FlashcardFront extends StatelessWidget {
                 ),
                 Row(
                   children: <Widget>[
-                    SizedBox(height: 78),
+                    SizedBox(height: 118),
                   ],
                 ),
               ],
@@ -122,7 +118,18 @@ class FlashcardFront extends StatelessWidget {
                 ),
                 Row(
                   children: <Widget>[
-                    SizedBox(height: 78),
+                    SizedBox(height: 38),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CheckboxShower(),
+                  ],
+                ),
+                Row(
+                  children: <Widget>[
+                    SizedBox(height: 38),
                   ],
                 ),
               ],
@@ -132,19 +139,59 @@ class FlashcardFront extends StatelessWidget {
           children: [
             Buttons(),
           ],
-        )
+        ),
       ],
     );
   }
 }
-class Buttons extends StatelessWidget {
+
+class CheckboxShower extends StatelessWidget {
   @override
-  Widget build(BuildContext button) {
+  Widget build(BuildContext checkbox) {
     return Consumer<Controller>(builder: (context, controller, child) {
       return Botaos(
         context: context,
         value: controller.acertou,
       );
     });
+  }
+}
+
+class Buttons extends StatelessWidget {
+  @override
+  Widget build(BuildContext button) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(20)),
+          ),
+          child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              primary: Color(0xff8FDC97),
+            ),
+            child: Text("  Next Flashcard  "),
+            onPressed: () {},
+          ),
+        ),
+        SizedBox(width: 50),
+        Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(20)),
+          ),
+          child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              primary: Color(0xff8FDC97),
+            ),
+            child: Text("Random Flashcard"),
+            onPressed: () {
+              Navigator.of(button).pushNamed('/PointsView');
+            },
+          ),
+        ),
+      ],
+    );
   }
 }
