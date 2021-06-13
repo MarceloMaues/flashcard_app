@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import 'Controller.dart';
 import 'FrontEnd/CreateDeckView/CreateDeckView.dart';
 import 'package:flashcard_app/FrontEnd/FlashCardFront/FlashCardFront.dart';
+import 'FrontEnd/FlashCardFront/Points.dart';
 
 void main() {
   runApp(
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
         '/CreateDeckView':(context) => CreateDeckView(),
         '/GameView':(context) => GameView(),
         '/EditDeckView':(context) => DeckEdit(),
+        '/PointsView':(context) => Points(),
       },
     );
   }
