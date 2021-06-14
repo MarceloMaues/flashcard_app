@@ -4,9 +4,9 @@ import 'BackEnd/DataStructures/Deck.dart';
 import 'package:flashcard_app/BackEnd/IO/DeckFilesManipulation.dart';
 
 class Controller extends ChangeNotifier {
-  DeckFilesManipulation filesIO = DeckFilesManipulation();
+  DeckFileMannipulation fileIO = DeckFileMannipulation();
   List<String> deckNames = [];
-  Deck? _selectedDeck;
+  Deck _selectedDeck;
 
 
 
@@ -39,36 +39,23 @@ class Controller extends ChangeNotifier {
   }
 
   void addCard(String frontName,String backName){
-    _selectedDeck!.addFlashCard(FlashCard(frontName, backName));
+    _selectedDeck.addFlashCard(FlashCard(frontName, backName));
     notifyListeners();
   }
 
   void removeCard(String frontName,String backName){
-    _selectedDeck!.addFlashCard(FlashCard(frontName, backName));
+    _selectedDeck.addFlashCard(FlashCard(frontName, backName));
     notifyListeners();
   }
 
   void saveDeck(){
-    if(_selectedDeck!.getDeckSize()>0){
+    if(_selectedDeck.getDeckSize()>0){
       //Salvar deck
     }
     if(!deckNames.contains(_selectedDeck)){
-      deckNames.add(_selectedDeck!.getDeckName());
+      deckNames.add(_selectedDeck.getDeckName());
       notifyListeners();
     }
-  }
-
-  void updateDeck(){
-
-  }
-
-  void getDeckNames() {
-      filesIO.readListNameDecks().then((result){
-        if (result is List<String>){
-          deckNames= result;
-          notifyListeners();
-        }
-      });
   }
 
   void addDeck(){
@@ -76,4 +63,9 @@ class Controller extends ChangeNotifier {
     notifyListeners();
   }
 
+  void getDecksNames()async{
+    deckNames = await fileIO.readDeckNames();
+    notifyListeners();
+  }
 }
+

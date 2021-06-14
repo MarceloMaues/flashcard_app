@@ -1,0 +1,14 @@
+{
+  "name": "funfou",
+  "numCards": 2,
+  "cards": [
+    {
+      "front": "oi",
+      "back": "tchau"
+    },
+    {
+      "front": "hello",
+      "back": "bye"
+    }
+  ]
+}
