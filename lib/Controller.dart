@@ -1,13 +1,15 @@
+import 'dart:convert';
+
 import 'package:flashcard_app/BackEnd/DataStructures/FlashCard.dart';
 import 'package:flutter/cupertino.dart';
 import 'BackEnd/DataStructures/Deck.dart';
-import 'package:flashcard_app/BackEnd/IO/DeckFilesManipulationMobile.dart';
+import 'package:flashcard_app/BackEnd/IO/DeckFilesManipulationWeb.dart';
+import 'package:flashcard_app/BackEnd/IO/DeckTest.dart';
 
 class Controller extends ChangeNotifier {
-  DeckFileMannipulation fileIO = DeckFileMannipulation();
+  DeckFilesManipulationWeb fileIO = DeckFilesManipulationWeb();
   List<String> deckNames = [];
   Deck _selectedDeck;
-
   bool _acertou = false;
 
   List<String> _decks = [
@@ -71,7 +73,11 @@ class Controller extends ChangeNotifier {
   }
 
   void getDecksNames() async {
-    deckNames = await fileIO.readDeckNames();
+    String a = await fileIO.readFile();
+    var dataName = jsonDecode(a);
+    print(dataName);
+    print(DeckTest.fromJson(dataName).name);
+    //deckNames =
     notifyListeners();
   }
 }
