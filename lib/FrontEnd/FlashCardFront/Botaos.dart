@@ -31,10 +31,10 @@ class Botaos extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                    'Got it?',
+                    '  Got it?',
                     style: TextStyle(
-                      fontSize: 25.0,
-                      color: Colors.black,
+                      fontSize: 20.0,
+                      color: Colors.white,
                     ),
                   ),
                 

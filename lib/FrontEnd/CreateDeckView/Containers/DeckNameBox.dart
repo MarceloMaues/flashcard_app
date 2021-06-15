@@ -63,7 +63,7 @@ class DeckNameBox extends StatelessWidget {
           margin: EdgeInsets.all(25.0),
           alignment: Alignment.center,
           width: 200,
-          height: 200,
+          height: 180,
 
         ),
         Row(
