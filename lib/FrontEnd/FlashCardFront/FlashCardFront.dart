@@ -7,7 +7,7 @@ import '../../Controller.dart';
 import "Botaos.dart";
 
 class GameView extends StatelessWidget {
-  GameView({Key? key}) : super(key: key);
+  GameView({Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -5,7 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 
 class BottomBar extends StatelessWidget {
-  const BottomBar({Key? key}) : super(key: key);
+  const BottomBar({Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
@@ -20,7 +20,9 @@ class BottomBar extends StatelessWidget {
                   alignment: Alignment.center,
                   foregroundColor: MaterialStateProperty.all<Color>(Color(0xff8FDC97)),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Controller().getDecksNames();
+                },
                 child: Text('Import',
                     style: TextStyle(
                         fontWeight: FontWeight.bold,

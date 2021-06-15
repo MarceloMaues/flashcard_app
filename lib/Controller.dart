@@ -1,17 +1,19 @@
+import 'dart:convert';
+
 import 'package:flashcard_app/BackEnd/DataStructures/FlashCard.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:get/get.dart';
-import 'package:flashcard_app/BackEnd/Menu.dart';
 import 'BackEnd/DataStructures/Deck.dart';
+import 'package:flashcard_app/BackEnd/IO/DeckFilesManipulationWeb.dart';
+import 'package:flashcard_app/BackEnd/IO/DeckFile.dart';
 
 class Controller extends ChangeNotifier {
-  List<String> _myDeckNames = [];
-  Deck? _selectedDeck;
-
-  //static Controller get to=>  Get.find();
-  //final Menu _model = Menu();
+  DeckFilesManipulationWeb fileIO = DeckFilesManipulationWeb();
+  List<String> deckNames = [];
+  Deck _selectedDeck;
   bool _acertou = false;
-  List<String> _decks = ['1',
+
+  List<String> _decks = [
+    '1',
     '2',
     '3',
     '4',
@@ -34,48 +36,46 @@ class Controller extends ChangeNotifier {
   ];
 
   List<String> get decks => _decks;
-  bool get acertou=>_acertou;
+  bool get acertou => _acertou;
 
-  void createNewDeck(String deckName){
+  void createNewDeck(String deckName) {
     _selectedDeck = Deck(deckName);
   }
 
-  void addCard(String frontName,String backName){
-    _selectedDeck!.addFlashCard(FlashCard(frontName, backName));
+  void addCard(String frontName, String backName) {
+    _selectedDeck.addFlashCard(FlashCard(frontName, backName));
     notifyListeners();
   }
 
-  void removeCard(String frontName,String backName){
-    _selectedDeck!.addFlashCard(FlashCard(frontName, backName));
+  void removeCard(String frontName, String backName) {
+    _selectedDeck.addFlashCard(FlashCard(frontName, backName));
     notifyListeners();
   }
 
-  void saveDeck(){
-    if(_selectedDeck!.getDeckSize()>0){
+  void saveDeck() {
+    if (_selectedDeck.getDeckSize() > 0) {
       //Salvar deck
     }
-    if(!_myDeckNames.contains(_selectedDeck)){
-      _myDeckNames.add(_selectedDeck!.getDeckName());
+    if (!deckNames.contains(_selectedDeck)) {
+      deckNames.add(_selectedDeck.getDeckName());
       notifyListeners();
     }
   }
 
-  void updateDeck(){
-
-  }
-
-  void oi (){
-
-  }
-
-  void addDeck(){
+  void addDeck() {
     _decks.add('a');
     notifyListeners();
   }
-  void setAcertou(bool a){
-    _acertou=a;
+
+  void setAcertou(bool a) {
+    _acertou = a;
     notifyListeners();
   }
 
- 
+  void getDecksNames() async {
+    Deck test = await fileIO.readFileDeck();
+    fileIO.saveFileDeck('poha', test);
+
+    notifyListeners();
+  }
 }
