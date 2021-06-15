@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class DeckNameBox extends StatelessWidget {
-  DeckNameBox({Key? key}) : super(key: key);
+  DeckNameBox({Key key}) : super(key: key);
   TextEditingController deckName = TextEditingController();
 
   @override

@@ -9,7 +9,7 @@ int counterIsCorrect = 0;
 
 class Botaos extends StatelessWidget {
   bool value;
-  Botaos({Key? key, required BuildContext context, required this.value})
+  Botaos({Key key, @required BuildContext context, @required this.value})
       : super(key: key);
   bool _myBoolean = false;
 
@@ -42,7 +42,7 @@ class Botaos extends StatelessWidget {
                     value: value,
                     activeColor:  Color.fromRGBO(87, 196, 229, 1),
                     onChanged: (value) {
-                      _myBoolean = value!;
+                      _myBoolean = value;
                       counterIsCorrect++;
                       print(counterIsCorrect);
                       Provider.of<Controller>(screen, listen: false)

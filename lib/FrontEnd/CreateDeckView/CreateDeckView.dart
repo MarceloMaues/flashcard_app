@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flashcard_app/FrontEnd/CreateDeckView/Containers/DeckNameBox.dart';
 
 class CreateDeckView extends StatelessWidget {
-  CreateDeckView({Key? key}) : super(key: key);
+  CreateDeckView({Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(

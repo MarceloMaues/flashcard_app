@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class DeckEdit extends StatelessWidget {
-  DeckEdit({Key? key}) : super (key: key);
+  DeckEdit({Key key}) : super (key: key);
   @override
   Widget build(BuildContext context){
     return Scaffold(

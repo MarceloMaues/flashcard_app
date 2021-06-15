@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class DecksAvailable extends StatelessWidget {
   List<String> entries;
-  DecksAvailable({Key? key,required BuildContext context,required this.entries}) : super(key: key);
+  DecksAvailable({Key key,@required BuildContext context,@required this.entries}) : super(key: key);
 
   @override
   Widget build(BuildContext context,) {
