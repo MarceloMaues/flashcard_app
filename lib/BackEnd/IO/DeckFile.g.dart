@@ -1,23 +1,23 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'DeckTest.dart';
+part of 'DeckFile.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-DeckTest _$DeckTestFromJson(Map<String, dynamic> json) {
-  return DeckTest(
+DeckFile _$DeckFileFromJson(Map<String, dynamic> json) {
+  return DeckFile(
     json['name'] as String,
     json['numCards'] as int,
     (json['cards'] as List)
         ?.map((e) =>
-            e == null ? null : CardTest.fromJson(e as Map<String, dynamic>))
+            e == null ? null : CardFile.fromJson(e as Map<String, dynamic>))
         ?.toList(),
   );
 }
 
-Map<String, dynamic> _$DeckTestToJson(DeckTest instance) => <String, dynamic>{
+Map<String, dynamic> _$DeckFileToJson(DeckFile instance) => <String, dynamic>{
       'name': instance.name,
       'numCards': instance.numCards,
       'cards': instance.cards,

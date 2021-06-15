@@ -4,7 +4,7 @@ import 'package:flashcard_app/BackEnd/DataStructures/FlashCard.dart';
 import 'package:flutter/cupertino.dart';
 import 'BackEnd/DataStructures/Deck.dart';
 import 'package:flashcard_app/BackEnd/IO/DeckFilesManipulationWeb.dart';
-import 'package:flashcard_app/BackEnd/IO/DeckTest.dart';
+import 'package:flashcard_app/BackEnd/IO/DeckFile.dart';
 
 class Controller extends ChangeNotifier {
   DeckFilesManipulationWeb fileIO = DeckFilesManipulationWeb();
@@ -73,11 +73,9 @@ class Controller extends ChangeNotifier {
   }
 
   void getDecksNames() async {
-    String a = await fileIO.readFile();
-    var dataName = jsonDecode(a);
-    print(dataName);
-    print(DeckTest.fromJson(dataName).name);
-    //deckNames =
+    Deck test = await fileIO.readFileDeck();
+    fileIO.saveFileDeck('poha', test);
+
     notifyListeners();
   }
 }
