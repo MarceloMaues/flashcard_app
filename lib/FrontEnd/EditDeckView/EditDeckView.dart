@@ -1,3 +1,4 @@
+import 'package:flashcard_app/FrontEnd/EditDeckView/Containers/BottomEditBarCard.dart';
 import 'package:flashcard_app/FrontEnd/EditDeckView/Containers/MiniFlashCard.dart';
 import 'package:flutter/material.dart';
 
@@ -43,7 +44,8 @@ class DeckEdit extends StatelessWidget {
         ),
         body: CardCreation(),
         floatingActionButton: FloatingActionButton(
-          onPressed: () {//adicionar algo na lista para receber o card//
+          onPressed: () { 
+            Navigator.of(context).pushNamed('CardFrontView');
           },
           tooltip: 'New Card',
           child: Icon(Icons.add),
@@ -51,7 +53,7 @@ class DeckEdit extends StatelessWidget {
           elevation: 10.0,
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        bottomNavigationBar: BottomEditBar(key: key));
+        bottomNavigationBar: BottomEditBarCard(key: key));
   }
 }
 

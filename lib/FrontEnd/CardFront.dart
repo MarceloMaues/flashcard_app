@@ -113,7 +113,7 @@ class CardNameFront extends StatelessWidget {
                     dialogType: DialogType.ERROR,
                     animType: AnimType.BOTTOMSLIDE,
                     title: 'Ops......!:',
-                    desc: 'Card Front needs to be not empty!',
+                    desc: 'Front side needs to be not empty!',
                     btnOkOnPress: () {},
                   )..show();
                 }},
