@@ -92,8 +92,6 @@ class CardNameFront extends StatelessWidget {
                       context: context,
                       dialogType: DialogType.SUCCES,
                       animType: AnimType.BOTTOMSLIDE,
-                      title: 'Congratulations!',
-                      desc: ' ',
                       btnOkOnPress: () {Navigator.of(context).pushNamed('/CardBackView'); },
                     )..show();
 
@@ -115,7 +113,7 @@ class CardNameFront extends StatelessWidget {
                     dialogType: DialogType.ERROR,
                     animType: AnimType.BOTTOMSLIDE,
                     title: 'Ops......!:',
-                    desc: 'Deck name needs to be not empty!',
+                    desc: 'Card Front needs to be not empty!',
                     btnOkOnPress: () {},
                   )..show();
                 }},
@@ -127,7 +125,7 @@ class CardNameFront extends StatelessWidget {
                 ),
               ),
               child: const Text(
-                '  Done  ',
+                '  Next  ',
               ),
             ),
           ],

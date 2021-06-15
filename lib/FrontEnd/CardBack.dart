@@ -1,6 +1,7 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 import '../../../Controller.dart';
@@ -93,8 +94,9 @@ class CardNameBack extends StatelessWidget {
                       dialogType: DialogType.SUCCES,
                       animType: AnimType.BOTTOMSLIDE,
                       title: 'Congratulations!',
-                      desc: ' ',
-                      btnOkOnPress: () { },
+                      desc: 'card created ',
+                      btnOkOnPress: () {
+                        Navigator.of(context).pushNamed('/EditDeckView');},
                     )..show();
 
                   } catch (e) {
@@ -115,7 +117,7 @@ class CardNameBack extends StatelessWidget {
                     dialogType: DialogType.ERROR,
                     animType: AnimType.BOTTOMSLIDE,
                     title: 'Ops......!:',
-                    desc: 'Deck name needs to be not empty!',
+                    desc: 'Back side needs to be not empty!',
                     btnOkOnPress: () {},
                   )..show();
                 }},
