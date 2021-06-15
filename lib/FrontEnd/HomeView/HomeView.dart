@@ -10,7 +10,7 @@ import 'package:provider/provider.dart';
 
 // ignore: must_be_immutable
 class HomeView extends StatelessWidget{
-  HomeView({Key? key}) : super(key: key);
+  HomeView({Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,7 +39,7 @@ class HomeView extends StatelessWidget{
         ),
         body: Consumer<Controller>(
             builder: (context, controller ,child){
-              controller.getDeckNames();
+            controller.getDecksNames();
               return DecksAvailable(context: context, entries: controller.deckNames);
             }
         ),
