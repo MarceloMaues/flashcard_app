@@ -1,20 +1,17 @@
 import 'package:flashcard_app/BackEnd/DataStructures/FlashCard.dart';
 import 'package:flutter/cupertino.dart';
 import 'BackEnd/DataStructures/Deck.dart';
-import 'package:flashcard_app/BackEnd/IO/DeckFilesManipulation.dart';
+import 'package:flashcard_app/BackEnd/IO/DeckFilesManipulationMobile.dart';
 
 class Controller extends ChangeNotifier {
   DeckFileMannipulation fileIO = DeckFileMannipulation();
   List<String> deckNames = [];
   Deck _selectedDeck;
 
-
-
-
-
   bool _acertou = false;
 
-  List<String> _decks = ['1',
+  List<String> _decks = [
+    '1',
     '2',
     '3',
     '4',
@@ -37,49 +34,44 @@ class Controller extends ChangeNotifier {
   ];
 
   List<String> get decks => _decks;
-  bool get acertou=>_acertou;
+  bool get acertou => _acertou;
 
-  void createNewDeck(String deckName){
+  void createNewDeck(String deckName) {
     _selectedDeck = Deck(deckName);
   }
 
-  void addCard(String frontName,String backName){
+  void addCard(String frontName, String backName) {
     _selectedDeck.addFlashCard(FlashCard(frontName, backName));
     notifyListeners();
   }
 
-  void removeCard(String frontName,String backName){
+  void removeCard(String frontName, String backName) {
     _selectedDeck.addFlashCard(FlashCard(frontName, backName));
     notifyListeners();
   }
 
-  void saveDeck(){
-    if(_selectedDeck.getDeckSize()>0){
+  void saveDeck() {
+    if (_selectedDeck.getDeckSize() > 0) {
       //Salvar deck
     }
-    if(!deckNames.contains(_selectedDeck)){
+    if (!deckNames.contains(_selectedDeck)) {
       deckNames.add(_selectedDeck.getDeckName());
       notifyListeners();
     }
   }
 
-  void addDeck(){
+  void addDeck() {
     _decks.add('a');
     notifyListeners();
   }
-  void setAcertou(bool a){
-    _acertou=a;
+
+  void setAcertou(bool a) {
+    _acertou = a;
     notifyListeners();
   }
 
-<<<<<<< HEAD
- 
-}
-=======
-  void getDecksNames()async{
+  void getDecksNames() async {
     deckNames = await fileIO.readDeckNames();
     notifyListeners();
   }
 }
-
->>>>>>> 43e0b861cf1d2f6c9057e1e723620bb35bdc5066
