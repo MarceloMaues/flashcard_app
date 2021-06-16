@@ -2,11 +2,9 @@ import 'dart:convert';
 import 'dart:html';
 import 'package:file_picker/file_picker.dart';
 import 'package:flashcard_app/BackEnd/DataStructures/Deck.dart';
-import 'package:flashcard_app/BackEnd/DataStructures/FlashCard.dart';
 import 'DeckFile.dart';
-import 'CardFile.dart';
 
-class DeckFilesManipulationWeb {
+class DeckFilesManipulation {
   void download(
     List<int> bytes, {
     String downloadName = '',
@@ -27,6 +25,7 @@ class DeckFilesManipulationWeb {
     return;
   }
 
+  // sava uma string qualquer
   void saveFileString(String name, String info) {
     String nameFile = name + '.json';
 
@@ -38,28 +37,35 @@ class DeckFilesManipulationWeb {
   }
 
   // pega a variavel deck, o formata para json e salva
-  void saveFileDeck(String name, Deck deck) {
+  int saveFileDeck(String name, Deck deck) {
     String nameFile = name + '.json';
-    String infoJson = '{ "name": ' +
-        deck.getDeckName() +
-        ',"numCards": ' +
-        deck.getDeckSize().toString() +
-        '"cards": [';
-    for (int i = 0; i < deck.getDeckSize(); i++) {
-      infoJson = infoJson +
-          '{"front": ' +
-          deck.getFlashCard(i).getFrontSide() +
-          ', "back": ' +
-          deck.getFlashCard(i).getBackSide() +
-          '}';
-      if (i != deck.getDeckSize() - 1) {
-        infoJson = infoJson + ',';
+    try {
+      //formatacao para json
+      String infoJson = '{ "name": ' +
+          deck.getDeckName() +
+          ',"numCards": ' +
+          deck.getDeckSize().toString() +
+          '"cards": [';
+      for (int i = 0; i < deck.getDeckSize(); i++) {
+        infoJson = infoJson +
+            '{"front": ' +
+            deck.getFlashCard(i).getFrontSide() +
+            ', "back": ' +
+            deck.getFlashCard(i).getBackSide() +
+            '}';
+        if (i != deck.getDeckSize() - 1) {
+          infoJson = infoJson + ',';
+        }
       }
+      infoJson = infoJson + ']}';
+      download(infoJson.codeUnits, downloadName: nameFile);
+      return 1;
+    } catch (e) {
+      return 0;
     }
-    infoJson = infoJson + ']}';
-    download(infoJson.codeUnits, downloadName: nameFile);
   }
 
+  //le o arquivo e retorna uma String com o conteudo do json
   Future<String> readFileString() async {
     FilePickerResult result = await FilePicker.platform
         .pickFiles(type: FileType.custom, allowedExtensions: ['json']);
@@ -72,9 +78,9 @@ class DeckFilesManipulationWeb {
     return jsonString;
   }
 
+  //le o arquivo e retorna um Deck
   Future<Deck> readFileDeck() async {
     Deck deck;
-    FlashCard cardTemp;
     var dataName;
     FilePickerResult result = await FilePicker.platform
         .pickFiles(type: FileType.custom, allowedExtensions: ['json']);
