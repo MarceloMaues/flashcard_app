@@ -14,7 +14,7 @@ class GameView extends StatelessWidget {
               icon: Icon(Icons.edit),
               color: Colors.white,
               onPressed: (){
-                Navigator.of(context).pushNamed('/EditDeckView');
+                Navigator.of(context).pushNamed('/EditCardView');
               },
             ),
           ],
@@ -25,17 +25,7 @@ class GameView extends StatelessWidget {
           ),
         ),
         body: Center(child: FlashcardFront()),
-         floatingActionButton: FloatingActionButton(
-          onPressed: () { 
-           // deletar o card
-          },
-          tooltip: 'Delete Card',
-          child: Icon(Icons.delete),
-          backgroundColor: Color(0xff8FDC97),
-          elevation: 10.0,
-        ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      );
+         );
   }
 }
 

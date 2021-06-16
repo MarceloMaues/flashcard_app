@@ -10,6 +10,8 @@ import 'Controller.dart';
 import 'FrontEnd/CreateDeckView/CreateDeckView.dart';
 import 'package:flashcard_app/FrontEnd/FlashCardFront/FlashCardFront.dart';
 
+import 'FrontEnd/EditCardView/EditCardView.dart';
+
 
 void main() {
   runApp(
@@ -31,8 +33,7 @@ class MyApp extends StatelessWidget {
         '/CreateDeckView':(context) => CreateDeckView(),
         '/GameView':(context) => GameView(),
         '/EditDeckView':(context) => DeckEdit(),
-        '/CardFrontView': (context)=> CardNameFront(),
-        '/CardBackView': (context)=>CardNameBack(),
+        '/EditCardView': (context)=> EditCardView(),
       },
     );
   }
