@@ -8,12 +8,14 @@ import 'ScreenArguments.dart';
 
 class MiniFlashCard  extends StatelessWidget {
   String oldFront, oldBack;
-  MiniFlashCard({Key key,@required this.oldFront,@required this.oldBack}) : super(key: key);
+  int index;
+  MiniFlashCard({Key key,@required this.oldFront,@required this.oldBack,@required this.index}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return InkWell(
         onTap: (){
-          Provider.of<Controller>(context,listen: false).selectCardOrAdd(this.oldFront,this.oldBack);
+          print(index);
+          Provider.of<Controller>(context,listen: false).cardSelected = index;
           Navigator.of(context).pushNamed('/EditCardView',arguments: ScreenArguments(oldFront,oldBack));
            },
         child:Container(

@@ -28,6 +28,11 @@ class Deck {
     return this._deckCards[local];
   }
 
+  FlashCard setFlashCard(int local, String front, String back) {
+    this._deckCards[local].setBackSide(back);
+    this._deckCards[local].setFrontSide(front);
+  }
+
   void addFlashCard(FlashCard card) {
     this._deckCards.add(card);
   }

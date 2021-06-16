@@ -31,16 +31,6 @@ class DeckEdit extends StatelessWidget {
                     ),
                   ),
                 ),
-                actions: [
-                  IconButton(
-                    icon: Icon(Icons.edit),
-                    color: Colors.white,
-                    onPressed: () {
-                      Navigator.of(context).pushNamed('/CreateDeckView');
-
-                    },
-                  ),
-                ],
                 leading: IconButton(
                   icon: Icon(Icons.arrow_back_ios_new_sharp),
                   color: Colors.white,
@@ -53,6 +43,7 @@ class DeckEdit extends StatelessWidget {
               body: CardCreation(),
               floatingActionButton: FloatingActionButton(
                 onPressed: () {
+                  Provider.of<Controller>(context,listen: false).cardSelected = -1;
                   Navigator.of(context).pushNamed('/EditCardView',arguments: ScreenArguments("", ""));
                 },
                 tooltip: 'New Card',
@@ -70,6 +61,7 @@ class DeckEdit extends StatelessWidget {
 
 
 class CardCreation extends StatelessWidget {
+  int globalIndex;
   @override
   Widget build(BuildContext context) {
     return Consumer<Controller>(
@@ -81,7 +73,7 @@ class CardCreation extends StatelessWidget {
             itemBuilder: (BuildContext context, int index) {
               return Consumer<Controller>(
                   builder: (context, controller ,child){
-                    return MiniFlashCard(oldBack: faces[0][index],oldFront:faces[1][index]);
+                    return MiniFlashCard(oldBack: faces[0][index],oldFront:faces[1][index],index: index);
                   }
               );
             },

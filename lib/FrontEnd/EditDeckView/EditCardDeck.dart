@@ -6,7 +6,6 @@ import 'Containers/ScreenArguments.dart';
 
 class EditCardView extends StatelessWidget{
   EditCardView({Key key}) : super(key: key);
-  //String oldFront, oldBack;
   @override
   Widget build(BuildContext context) {
     final args = ModalRoute.of(context).settings.arguments as ScreenArguments;
@@ -24,8 +23,8 @@ class EditCardView extends StatelessWidget{
                   icon: Icon(Icons.save),
                   color: Colors.white,
                   onPressed: () {
-                    controller.editCard( oldFront,oldBack,cardNameFront.value.text,cardNameBack.value.text);
                     Navigator.of(context).pop();
+                    controller.editCard(controller.cardSelected ,cardNameFront.value.text,cardNameBack.value.text);
                   },
                 ),
               ],
@@ -56,7 +55,6 @@ class EditCardView extends StatelessWidget{
                             child: TextField(
                               controller: cardNameFront,
                               maxLength: 100,
-
                               onSubmitted: (String teste) {
                               },
                               style: TextStyle(
@@ -96,7 +94,8 @@ class EditCardView extends StatelessWidget{
             floatingActionButton: FloatingActionButton(
               onPressed: (
                   ) {
-                Provider.of<Controller>(context, listen: false).removeCard(args.front, args.back);
+                Provider.of<Controller>(context, listen: false).removeCard(controller.cardSelected);
+                Navigator.of(context).pop();
                 // deletar o card
               },
               tooltip: 'Delete Card',

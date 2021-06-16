@@ -16,6 +16,8 @@ class Controller extends ChangeNotifier {
   bool _correctAnswer = false;
   bool _acertou = false;
   int _score = 0;
+  int deckSelected = -1;
+  int cardSelected = -1;
 
   int get score => _score;
   bool get backCard => _backCard;
@@ -71,48 +73,17 @@ class Controller extends ChangeNotifier {
     return faces;
   }
 
-  void selectDeck(String name){
-    bool found = false;
-    int i = 0;
-    while((i<_myDecks.length)&&(!found)){
-      if(_myDecks[i].getDeckName()==name){
-        found = true;
-        _selectedDeck =_myDecks[i];
-      }
-      i++;
-    }
+  void selectDeck(int i){
+    deckSelected = i;
+    _selectedDeck = _myDecks[i];
+    saveDeck();
     notifyListeners();
   }
 
   void createNewDeck(String deckName) {
-    String newDeck = deckName;
-    bool found = false;
-    int i = 0;
-    while((i<_myDecks.length)&&(!found)){
-      if(_myDecks[i].getDeckName()==deckName){
-        _selectedDeck =_myDecks[i];
-        renameDack(deckName);
-      }
-      i++;
-    }
-    if(!found){
-      _selectedDeck = Deck(deckName);
-    }
+    _selectedDeck = Deck(deckName);
+    deckSelected =_myDecks.length;
     saveDeck();
-  }
-
-  void renameDack(String rename){
-    int i = 0;
-    bool found = false;
-    while((i<_myDecks.length)&&(!found)){
-      if(_myDecks[i].getDeckName()==_selectedDeck.getDeckName()){
-        _selectedDeck.renameDeck(rename);
-        _myDecks[i].renameDeck(rename);
-        found = true;
-      }
-      i++;
-    }
-    notifyListeners();
   }
 
   void selectCardOrAdd(String front,String back){
@@ -138,35 +109,20 @@ class Controller extends ChangeNotifier {
     notifyListeners();
   }
 
-  void removeCard(String frontName, String backName) {
-    bool found = false;
-    int i = 0;
-    while((i<_selectedDeck.getDeckSize())&&(!found)){
-      FlashCard card = _selectedDeck.getFlashCard(i);
-      if((card.getFrontSide()==frontName)&&(card.getBackSide()==backName)){
-        _selectedDeck.removeFlashCard(_selectedDeck.getFlashCard(i));
-        found = true;
-      }
-      i++;
-    }
+  void removeCard(int index) {
+    _selectedDeck.removeFlashCard(_selectedDeck.getFlashCard(index));
     notifyListeners();
   }
 
-  void editCard(String oldBack,String oldFront,String newBack ,String newFront){
-    bool found = false;
-    int i = 0;
-    while((i<_selectedDeck.getDeckSize())&&(!found)){
-      FlashCard card = _selectedDeck.getFlashCard(i);
-      if((card.getFrontSide()==oldFront)&&(card.getBackSide()==oldBack)){
-        _selectedDeck.getFlashCard(i).setBackSide(newBack);
-        _selectedDeck.getFlashCard(i).setBackSide(newFront);
-        found = true;
-      }
-      i++;
+  void editCard(int i,String newBack ,String newFront){
+    if(i>=0){
+      _myDecks[deckSelected].setFlashCard(i,newFront,newBack);
+    }else{
+      _actualGame = new FlashCard(newBack,  newFront);
+      _selectedDeck.addFlashCard(_actualGame);
+      cardSelected = _selectedDeck.getDeckSize();
     }
-    if(!found){
-      _selectedDeck.addFlashCard(FlashCard(newBack, newFront));
-    }
+    saveDeck();
     notifyListeners();
   }
 
