@@ -3,11 +3,13 @@ import 'dart:convert';
 import 'package:flashcard_app/BackEnd/DataStructures/FlashCard.dart';
 import 'package:flutter/cupertino.dart';
 import 'BackEnd/DataStructures/Deck.dart';
-import 'package:flashcard_app/BackEnd/IO/DeckFilesManipulationWeb.dart';
+import 'package:flashcard_app/BackEnd/IO/DeckFilesManipulationMobile.dart' if (dart.library.html) 'package:flashcard_app/BackEnd/IO/DeckFilesManipulationWeb.dart';
 import 'package:flashcard_app/BackEnd/IO/DeckFile.dart';
 
 class Controller extends ChangeNotifier {
-  DeckFilesManipulationWeb fileIO = DeckFilesManipulationWeb();
+
+  DeckFilesManipulation fileIO = DeckFilesManipulation();
+  //DeckFilesManipulation fileWeb = DeckFilesManipulation();
   List<String> deckNames = [];
   Deck _selectedDeck;
   bool _acertou = false;
@@ -73,8 +75,9 @@ class Controller extends ChangeNotifier {
   }
 
   void getDecksNames() async {
-    Deck test = await fileIO.readFileDeck();
-    fileIO.saveFileDeck('poha', test);
+    fileIO.saveFileString('vaiiiii', 'teste batata paçoca');
+    print(await fileIO.readFileString('vaiiiii'));
+    print("terminou");
 
     notifyListeners();
   }

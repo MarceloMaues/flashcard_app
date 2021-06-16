@@ -6,7 +6,7 @@ import 'package:flashcard_app/BackEnd/DataStructures/FlashCard.dart';
 import 'DeckFile.dart';
 import 'CardFile.dart';
 
-class DeckFilesManipulationWeb {
+class DeckFilesManipulation {
   void download(
     List<int> bytes, {
     String downloadName = '',

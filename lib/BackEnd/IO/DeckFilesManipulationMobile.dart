@@ -1,66 +1,100 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:path/path.dart'as p;
 import 'package:flashcard_app/BackEnd/IO/CardFile.dart';
 import 'package:flashcard_app/BackEnd/IO/DeckFile.dart';
 import 'package:flashcard_app/BackEnd/DataStructures/Deck.dart';
 import 'package:flashcard_app/BackEnd/DataStructures/FlashCard.dart';
 
-class DeckFileMannipulation {
-  Future<String> get _localPath async {
+class DeckFilesManipulation {
+  
+  Future<File> localFile(String fileName) async{
     final directory = await getApplicationDocumentsDirectory();
-    return directory.path;
+    final path = directory.path;
+    final f = fileName+'.json';
+    final completepath = p.join(path, f);
+    File newfile = new File(completepath);
+    return newfile;
   }
-
-  Future<File> get _localFile async {
-    final path = await _localPath;
-    return File('$path/counter.txt');
-  }
-
-  Future<int> readFile() async {
+  
+  Future<int> saveFileString(String nameFile, String text) async {
     try {
-      final file = await _localFile;
-      // Read the file
-      final contents = await file.readAsString();
-
-      return int.parse(contents);
+      File file = await localFile(nameFile);
+      // Write the file
+      file.writeAsString(text);
+      return 1;
     } catch (e) {
-      // If encountering an error, return 0
       return 0;
     }
   }
 
-  Future<File> writeFile() async {
-    final file = await _localFile;
-    // Write the file
-    return file.writeAsString('oi');
-  }
-
-  Future<List<String>> readDeckNames() async {
-    List items = [];
-    List<String> deckNames = [];
-    final String response = await rootBundle.loadString('assets/config.json');
-    final data = await json.decode(response);
-    items = data["items"];
-    for (int i = 0; i < items.length; i++) {
-      deckNames.add(items[i]["name"]);
+  //escreve no arquivo as informacoes do deck no formato json
+  Future<int> saveFileDeck(String nameFile, Deck deck) async {
+    File file = await localFile(nameFile);
+    String infoJson;
+    try {
+      infoJson = '{ "name": ' +
+          deck.getDeckName() +
+          ',"numCards": ' +
+          deck.getDeckSize().toString() +
+          '"cards": [';
+      for (int i = 0; i < deck.getDeckSize(); i++) {
+        infoJson = infoJson +
+            '{"front": ' +
+            deck.getFlashCard(i).getFrontSide() +
+            ', "back": ' +
+            deck.getFlashCard(i).getBackSide() +
+            '}';
+        if (i != deck.getDeckSize() - 1) {
+          infoJson = infoJson + ',';
+        }
+      }
+      infoJson = infoJson + ']}';
+      //escreve as informacao do deck no formato json
+      await file.writeAsString(infoJson);
+      return 1;
+    } catch (e) {
+      return 0;
     }
-    return deckNames;
   }
 
-  void readDeck(String file) async {
+  //le o arquivo e retorna uma String com o conteudo do json
+  Future<String> readFileString(String nameFile) async {
+    File file = await localFile(nameFile);
+    String info = '';
+    try {
+      // Read the file
+      info = await file.readAsString();
+
+      return info;
+    } catch (e) {
+      return info;
+    }
+  }
+
+  //le o arquivo
+  Future<String> readFileDeck(String nameFile) async {
+    File file = await localFile(nameFile);
+    var dataName;
+    String jsonString = '';
     Deck deck;
-    DeckFile deckJson =
-        DeckFile.fromJson(jsonDecode(utf8.decode(file.codeUnits)));
-    deck = Deck(deckJson.name);
-    int max = deckJson.cards.length;
-    for (int i = 0; i < max; i++) {
-      CardFile cardJson = deckJson.cards[i];
-      FlashCard card = FlashCard(cardJson.back, cardJson.front);
-      deck.addFlashCard(card);
-      print(deck.toString());
+    try {
+      // Read the file
+      jsonString = await file.readAsString();
+      dataName = await jsonDecode(jsonString);
+
+      deck = new Deck(DeckFile.fromJson(dataName).name);
+      for (int i = 0; i < DeckFile.fromJson(dataName).numCards; i++) {
+        deck.addFlashCardString(DeckFile.fromJson(dataName).cards[i].front,
+            DeckFile.fromJson(dataName).cards[i].back);
+      }
+      return jsonString;
+    } catch (e) {
+      return jsonString;
     }
   }
 }
