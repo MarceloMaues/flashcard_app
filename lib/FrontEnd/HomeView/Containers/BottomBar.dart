@@ -21,7 +21,7 @@ class BottomBar extends StatelessWidget {
                   foregroundColor: MaterialStateProperty.all<Color>(Color(0xff8FDC97)),
                 ),
                 onPressed: () {
-                  Controller().getDeckNames();
+                  Provider.of<Controller>(context, listen: false).importDeck();
                 },
                 child: Text('Import',
                     style: TextStyle(

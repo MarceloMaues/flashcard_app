@@ -9,38 +9,47 @@ class BottomEditBarCard extends StatelessWidget {
   const BottomEditBarCard({Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return BottomAppBar(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        //Center Row contents horizontally,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          Expanded(
-              child: TextButton(
-                style: ButtonStyle(
-                  alignment: Alignment.center,
-                  foregroundColor: MaterialStateProperty.all<Color>(Color(0xff8FDC97)),
+    return Consumer<Controller>(
+        builder: (context, controller, child) {
+          return BottomAppBar(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              //Center Row contents horizontally,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Expanded(
+                    child: TextButton(
+                      style: ButtonStyle(
+                        alignment: Alignment.center,
+                        foregroundColor: MaterialStateProperty.all<Color>(Color(0xff8FDC97)),
+                      ),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                        controller.exportDeck();
+                      },
+                      child: Icon(TablerIcons.file_export),
+                    )
                 ),
-                onPressed: () {},
-                child: Icon(TablerIcons.file_export),
-              )
-          ),
-          Expanded(
-              child: TextButton(
-                style: ButtonStyle(
-                  alignment: Alignment.center,
-                  foregroundColor:MaterialStateProperty.all<Color>(Color(0xff8FDC97)),
+                Expanded(
+                    child: TextButton(
+                        style: ButtonStyle(
+                          alignment: Alignment.center,
+                          foregroundColor:MaterialStateProperty.all<Color>(Color(0xff8FDC97)),
+                        ),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                          controller.removeDeck();
+                          Navigator.of(context).pop();
+                          //deletar deck, esvaziar lista
+                        },
+                        child: Icon(TablerIcons.trash)
+                    )
                 ),
-                onPressed: () {
-                  
-                //deletar deck, esvaziar lista
-                },
-                child: Icon(TablerIcons.trash)
-              )
-          ),
-        ],
-      ),
-      shape: CircularNotchedRectangle(),
+              ],
+            ),
+            shape: CircularNotchedRectangle(),
+          );
+        }
     );
   }
 }

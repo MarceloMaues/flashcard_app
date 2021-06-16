@@ -12,7 +12,9 @@ class CreateDeckView extends StatelessWidget {
           leading: IconButton(
             color: Colors.white,
             icon: const Icon(Icons.arrow_back_ios_new_sharp),
-            onPressed: () => Navigator.of(context).pop(context),
+            onPressed: () {
+              Navigator.of(context).pop(context);
+            }
           ),
         ),
         body: DeckNameBox()

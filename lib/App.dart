@@ -7,8 +7,8 @@ import 'package:provider/provider.dart';
 import 'Controller.dart';
 import 'FrontEnd/CreateDeckView/CreateDeckView.dart';
 import 'package:flashcard_app/FrontEnd/FlashCardFront/FlashCardFront.dart';
+import 'FrontEnd/EditDeckView/EditCardDeck.dart';
 import 'FrontEnd/FlashCardFront/Points.dart';
-import 'FrontEnd/EditCardView/EditCardView.dart';
 
 
 void main() {

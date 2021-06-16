@@ -26,7 +26,7 @@ class DeckNameBox extends StatelessWidget {
                 child: Align(
                   alignment: Alignment.center,
                   child: Text(
-                    'Name the new deck:',
+                    'Name the deck:',
                     style: TextStyle(
                       fontSize: 25.0,
                       color: Colors.white,
@@ -80,13 +80,12 @@ class DeckNameBox extends StatelessWidget {
                 if(deckName.text.isNotEmpty && noSpace.isNotEmpty){
                   try {
                     Provider.of<Controller>(context,listen:false).createNewDeck(noSpace);
-                    Provider.of<Controller>(context,listen:false).saveDeck();
                     AwesomeDialog(
                       context: context,
                       dialogType: DialogType.SUCCES,
                       animType: AnimType.BOTTOMSLIDE,
                       title: 'Congratulations!',
-                      desc: 'You created a deck named '+noSpace,
+                      desc: 'The deck name is:'+noSpace,
                       btnOkOnPress: () { Navigator.of(context).pushNamed('/EditDeckView');},
                     )..show();
 

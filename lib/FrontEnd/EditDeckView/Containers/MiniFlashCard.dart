@@ -1,15 +1,20 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
+
+import '../../../Controller.dart';
+import 'ScreenArguments.dart';
 
 class MiniFlashCard  extends StatelessWidget {
-  MiniFlashCard({Key key}) : super(key: key);
-  String teste= 'aa';
+  String oldFront, oldBack;
+  MiniFlashCard({Key key,@required this.oldFront,@required this.oldBack}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return InkWell(
         onTap: (){
-           Navigator.of(context).pushNamed('/EditCardView');
+          Provider.of<Controller>(context,listen: false).selectCardOrAdd(this.oldFront,this.oldBack);
+          Navigator.of(context).pushNamed('/EditCardView',arguments: ScreenArguments(oldFront,oldBack));
            },
         child:Container(
             padding: EdgeInsets.all(10),
@@ -35,7 +40,7 @@ class MiniFlashCard  extends StatelessWidget {
                             ),
                             SingleChildScrollView(
                                 scrollDirection: Axis.horizontal,
-                                child:Text("Batataaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa ZUDY",style: TextStyle(fontSize: 25),)),
+                                child:Text(oldFront,style: TextStyle(fontSize: 25),)),
                           ],
                         ),
                       )
@@ -59,7 +64,7 @@ class MiniFlashCard  extends StatelessWidget {
                             ),
                             SingleChildScrollView(
                                 scrollDirection: Axis.horizontal,
-                                child:Text("Legume",style: TextStyle(fontSize: 25),)),
+                                child:Text(oldBack,style: TextStyle(fontSize: 25),)),
                           ],
                         ),
                       )

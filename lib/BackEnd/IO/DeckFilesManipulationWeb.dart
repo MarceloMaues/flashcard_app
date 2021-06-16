@@ -79,7 +79,7 @@ class DeckFilesManipulation {
   }
 
   //le o arquivo e retorna um Deck
-  Future<Deck> readFileDeck() async {
+  Future<Deck> readFileDeck(String a) async {
     Deck deck;
     var dataName;
     FilePickerResult result = await FilePicker.platform
@@ -89,7 +89,6 @@ class DeckFilesManipulation {
       try {
         jsonString = new String.fromCharCodes(result.files.first.bytes);
         dataName = await jsonDecode(jsonString);
-
         deck = new Deck(DeckFile.fromJson(dataName).name);
         for (int i = 0; i < DeckFile.fromJson(dataName).numCards; i++) {
           deck.addFlashCardString(DeckFile.fromJson(dataName).cards[i].front,

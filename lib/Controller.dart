@@ -1,20 +1,19 @@
-import 'dart:convert';
-
-import 'package:file_picker/file_picker.dart';
 import 'package:flashcard_app/BackEnd/DataStructures/FlashCard.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
+import 'package:provider/provider.dart';
 import 'BackEnd/DataStructures/Deck.dart';
 import 'package:flashcard_app/BackEnd/IO/DeckFilesManipulationMobile.dart'
     if (dart.library.html) 'package:flashcard_app/BackEnd/IO/DeckFilesManipulationWeb.dart';
 
 class Controller extends ChangeNotifier {
-  //DeckFilesManipulationWeb fileIO = DeckFilesManipulationWeb();
-  List<Deck> _myDecks = [];
+  DeckFilesManipulation fileIO = DeckFilesManipulation();
+
+ List<Deck> _myDecks = [];
   Deck _selectedDeck;
   FlashCard _actualGame;
   bool _backCard = false;
   bool _correctAnswer = false;
-  DeckFilesManipulation fileIO = DeckFilesManipulation();
   bool _acertou = false;
   int _score = 0;
 
@@ -22,6 +21,12 @@ class Controller extends ChangeNotifier {
   bool get backCard => _backCard;
   bool get acertou => _acertou;
   bool get correctAnswer => _correctAnswer;
+  String get selectedName => _selectedDeck.getDeckName();
+  String get frontActualCard => _actualGame.getFrontSide();
+  String get backActualCard => _actualGame.getBackSide();
+  List<List<String>> get deckFaces => [];
+  int get numCards => _selectedDeck.getDeckSize();
+  List<String> get deckNames => getDeckNames();
 
   void setAcertou(bool oi){
     _acertou =oi;
@@ -55,6 +60,17 @@ class Controller extends ChangeNotifier {
     return deckNames;
   }
 
+  List<List<String>> getDeckFaces(){
+    List<List<String>> faces =[];
+    faces.add([]);
+    faces.add([]);
+    for(int i= 0;i<_selectedDeck.getDeckSize();i++){
+      faces[0].add(_selectedDeck.getFlashCard(i).getFrontSide());
+      faces[1].add(_selectedDeck.getFlashCard(i).getBackSide());
+    }
+    return faces;
+  }
+
   void selectDeck(String name){
     bool found = false;
     int i = 0;
@@ -74,10 +90,15 @@ class Controller extends ChangeNotifier {
     int i = 0;
     while((i<_myDecks.length)&&(!found)){
       if(_myDecks[i].getDeckName()==deckName){
-        //todo
+        _selectedDeck =_myDecks[i];
+        renameDack(deckName);
       }
+      i++;
     }
-    _selectedDeck = Deck(deckName);
+    if(!found){
+      _selectedDeck = Deck(deckName);
+    }
+    saveDeck();
   }
 
   void renameDack(String rename){
@@ -88,6 +109,22 @@ class Controller extends ChangeNotifier {
         _selectedDeck.renameDeck(rename);
         _myDecks[i].renameDeck(rename);
         found = true;
+      }
+      i++;
+    }
+    notifyListeners();
+  }
+
+  void selectCardOrAdd(String front,String back){
+    int i = 0;
+    bool found = false;
+
+    while((i<_myDecks.length)&&(!found)){
+      if(_selectedDeck.getFlashCard(i).getFrontSide()==front){
+        if(_selectedDeck.getFlashCard(i).getBackSide()==back){
+          _actualGame = _selectedDeck.getFlashCard(i);
+          found = true;
+        }
       }
       i++;
     }
@@ -127,6 +164,9 @@ class Controller extends ChangeNotifier {
       }
       i++;
     }
+    if(!found){
+      _selectedDeck.addFlashCard(FlashCard(newBack, newFront));
+    }
     notifyListeners();
   }
 
@@ -159,31 +199,14 @@ class Controller extends ChangeNotifier {
     notifyListeners();
   }
 
-  void importDeck(){
-    notifyListeners();
+  void importDeck() async{
+    _selectedDeck = await fileIO.readFileDeck("a");
+    createNewDeck(_selectedDeck.getDeckName());
+    saveDeck();
   }
 
   void exportDeck(){
     notifyListeners();
   }
 
-  void getDecksNamesAAA() async {
-    //String a = await fileIO.readFile();
-    //var dataName = jsonDecode(a);
-    //print(dataName);
-    //print(DeckTest.fromJson(dataName).name);
-    //deckNames =
-    FilePickerResult result = await FilePicker.platform
-        .pickFiles(type: FileType.custom, allowedExtensions: ['json']);
-    String jsonString = '';
-    if (result != null) {
-      try {
-        jsonString = new String.fromCharCodes(result.files.first.bytes);
-      } catch (e) {}
-    }
-    var dataName = jsonDecode(jsonString);
-    print(dataName);
-    //print(DeckTest.fromJson(dataName).name);
-    notifyListeners();
-  }
 }
