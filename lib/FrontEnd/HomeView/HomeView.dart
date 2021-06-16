@@ -8,7 +8,6 @@ import 'package:provider/provider.dart';
 
 
 
-// ignore: must_be_immutable
 class HomeView extends StatelessWidget{
   HomeView({Key key}) : super(key: key);
   @override
@@ -44,9 +43,10 @@ class HomeView extends StatelessWidget{
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: (){
+            
             Navigator.of(context).pushNamed('/CreateDeckView');
             },
-          tooltip: 'Increment',
+          tooltip: 'New Deck',
           child: Icon(Icons.add),
           backgroundColor: Color(0xff8FDC97),
           elevation: 10.0,
