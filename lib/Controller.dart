@@ -143,25 +143,17 @@ class Controller extends ChangeNotifier {
   }
 
   void removeDeck(){
-    int i = 0;
-    bool found = false;
-    while((i<_myDecks.length)&&(!found)){
-      if(_myDecks[i].getDeckName()==_selectedDeck.getDeckName()){
-        _myDecks.removeAt(i);
-        found = true;
-      }
-      i++;
-    }
+    _myDecks.removeAt(deckSelected);
     notifyListeners();
   }
 
   void importDeck() async{
     _selectedDeck = await fileIO.readFileDeck("a");
-    createNewDeck(_selectedDeck.getDeckName());
     saveDeck();
   }
 
-  void exportDeck(){
+  void exportDeck() async {
+    await fileIO.saveFileDeck('FlashCard', _selectedDeck);
     notifyListeners();
   }
 

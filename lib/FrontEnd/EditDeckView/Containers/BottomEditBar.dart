@@ -21,7 +21,9 @@ class BottomEditBar extends StatelessWidget {
                   alignment: Alignment.center,
                   foregroundColor: MaterialStateProperty.all<Color>(Color(0xff8FDC97)),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Provider.of<Controller>(context,listen: false).exportDeck();
+                },
                 child: Icon(TablerIcons.file_export),
               )
           ),
@@ -32,17 +34,8 @@ class BottomEditBar extends StatelessWidget {
                   foregroundColor:MaterialStateProperty.all<Color>(Color(0xff8FDC97)),
                 ),
                 onPressed: () {
-                  AwesomeDialog(
-                    context: context,
-                    dialogType: DialogType.NO_HEADER,
-                    animType: AnimType.BOTTOMSLIDE,
-                    title: 'This app was made by:',
-                    desc: 'Leonardo de Jesus Diz Conde;\n'
-                        +  'Marcelo Maués Botelho;\n'
-                        +  'Victor Yuji Saito;\n'
-                        +  'Vinicius Prado Vasconcelos;',
-                    btnOkOnPress: () {},
-                  )..show();
+                  Provider.of<Controller>(context,listen: false).removeDeck();
+                  Navigator.of(context).pop();
                 },
                 child: Icon(TablerIcons.trash)
               )
