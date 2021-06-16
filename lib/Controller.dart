@@ -4,6 +4,8 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flashcard_app/BackEnd/DataStructures/FlashCard.dart';
 import 'package:flutter/cupertino.dart';
 import 'BackEnd/DataStructures/Deck.dart';
+import 'package:flashcard_app/BackEnd/IO/DeckFilesManipulationMobile.dart'
+    if (dart.library.html) 'package:flashcard_app/BackEnd/IO/DeckFilesManipulationWeb.dart';
 
 class Controller extends ChangeNotifier {
   //DeckFilesManipulationWeb fileIO = DeckFilesManipulationWeb();
@@ -12,6 +14,7 @@ class Controller extends ChangeNotifier {
   FlashCard _actualGame;
   bool _backCard = false;
   bool _correctAnswer = false;
+  DeckFilesManipulation fileIO = DeckFilesManipulation();
   bool _acertou = false;
   int _score = 0;
 
@@ -183,5 +186,4 @@ class Controller extends ChangeNotifier {
     //print(DeckTest.fromJson(dataName).name);
     notifyListeners();
   }
-
 }

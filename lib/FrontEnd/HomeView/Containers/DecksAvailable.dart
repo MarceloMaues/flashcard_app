@@ -22,7 +22,7 @@ class DecksAvailable extends StatelessWidget {
                         borderRadius: BorderRadius.circular(16),
                         color: Color(0xff57C4E5)),
                     child: Center(
-                      child: Text('Deck ${entries[index]}',
+                      child: Text(entries[index],
                           style: TextStyle(color: Colors.white)),
                     )
                 )
