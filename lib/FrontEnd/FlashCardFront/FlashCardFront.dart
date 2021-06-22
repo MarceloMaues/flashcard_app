@@ -38,7 +38,9 @@ int counterIsWrong = 0;
 class FlashcardFront extends StatelessWidget {
   @override
   Widget build(BuildContext screen) {
-    return new Column(
+    return Consumer<Controller>(
+        builder: (context, controller, child) {
+      return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
@@ -52,7 +54,7 @@ class FlashcardFront extends StatelessWidget {
                 child: Align(
                   alignment: Alignment.bottomLeft,
                   child: Text(
-                    'sdad',
+                    controller.getSelectedDeckName(),
                     style: TextStyle(
                       fontSize: 25.0,
                       color: Color.fromRGBO(255, 255, 255, 1),
@@ -140,6 +142,7 @@ class FlashcardFront extends StatelessWidget {
         ),
       ],
     );
+  });
   }
 }
 

@@ -46,10 +46,20 @@ class Deck {
     this._deckCards.remove(card);
   }
 
-  FlashCard getRandomCard() {
+  void getRandomCard() {
+    FlashCard inicio = _deckCards[0];
     Random random = new Random();
     int randomNumber = random.nextInt(_deckCards.length);
-    return this._deckCards[randomNumber];
+    _deckCards[0] = _deckCards[randomNumber];
+     this._deckCards[randomNumber] = inicio;
+  }
+
+  List<String> getFirstCardAsSting(){
+    List<String> faces =[];
+    faces.add(_deckCards[0].getFrontSide());
+    faces.add(_deckCards[0].getBackSide());
+    faces.removeAt(0);
+    return faces;
   }
 
 

@@ -11,6 +11,7 @@ class Controller extends ChangeNotifier {
 
  List<Deck> _myDecks = [];
   Deck _selectedDeck;
+  Deck _gameDeck;
   FlashCard _actualGame;
   bool _backCard = false;
   bool _correctAnswer = false;
@@ -18,6 +19,7 @@ class Controller extends ChangeNotifier {
   int _score = 0;
   int deckSelected = -1;
   int cardSelected = -1;
+  List<String> gameActualCard;
 
   int get score => _score;
   bool get backCard => _backCard;
@@ -61,6 +63,8 @@ class Controller extends ChangeNotifier {
     }
     return deckNames;
   }
+
+
 
   List<List<String>> getDeckFaces(){
     List<List<String>> faces =[];
@@ -124,6 +128,11 @@ class Controller extends ChangeNotifier {
     }
     saveDeck();
     notifyListeners();
+  }
+
+  String getSelectedDeckName(){
+    _gameDeck=_selectedDeck;
+    return _selectedDeck.getDeckName();
   }
 
   void saveDeck() {
