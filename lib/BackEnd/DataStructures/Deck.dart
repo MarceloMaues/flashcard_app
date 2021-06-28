@@ -2,9 +2,11 @@ import 'package:flashcard_app/BackEnd/DataStructures/FlashCard.dart';
 import 'dart:math';
 
 class Deck {
+  //atributos do deck
   List<FlashCard> _deckCards = [];
   String _deckName = '';
 
+  //construtor
   Deck(String name) {
     this._deckName = name;
   }
@@ -51,16 +53,14 @@ class Deck {
     Random random = new Random();
     int randomNumber = random.nextInt(_deckCards.length);
     _deckCards[0] = _deckCards[randomNumber];
-     this._deckCards[randomNumber] = inicio;
+    this._deckCards[randomNumber] = inicio;
   }
 
-  List<String> getFirstCardAsSting(){
-    List<String> faces =[];
+  List<String> getFirstCardAsSting() {
+    List<String> faces = [];
     faces.add(_deckCards[0].getFrontSide());
     faces.add(_deckCards[0].getBackSide());
     faces.removeAt(0);
     return faces;
   }
-
-
 }
