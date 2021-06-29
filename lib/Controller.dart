@@ -1,7 +1,6 @@
 import 'package:flashcard_app/BackEnd/DataStructures/FlashCard.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
-import 'package:provider/provider.dart';
 import 'BackEnd/DataStructures/Deck.dart';
 import 'package:flashcard_app/BackEnd/IO/DeckFilesManipulationMobile.dart'
     if (dart.library.html) 'package:flashcard_app/BackEnd/IO/DeckFilesManipulationWeb.dart';
@@ -9,21 +8,30 @@ import 'package:flashcard_app/BackEnd/IO/DeckFilesManipulationMobile.dart'
 class Controller extends ChangeNotifier {
   DeckFilesManipulation fileIO = DeckFilesManipulation();
 
+  Deck _selectedDeck = null;
+  int _selectedDeckSize = 0;
+
+
+
+  int _score = 0;
+  bool _getCorrect = false;
+
+
   List<Deck> _myDecks = [];
-  Deck _selectedDeck;
+
   Deck _gameDeck;
   FlashCard _actualGame;
   bool _backCard = false;
   bool _correctAnswer = false;
-  bool _acertou = false;
-  int _score = 0;
+
+
   int deckSelected = -1;
   int cardSelected = -1;
   List<String> gameActualCard;
 
   int get score => _score;
   bool get backCard => _backCard;
-  bool get acertou => _acertou;
+  bool get checkBoxUpdator => _getCorrect;
   bool get correctAnswer => _correctAnswer;
   String get selectedName => _selectedDeck.getDeckName();
   String get frontActualCard => _actualGame.getFrontSide();
@@ -31,11 +39,7 @@ class Controller extends ChangeNotifier {
   List<List<String>> get deckFaces => [];
   int get numCards => _selectedDeck.getDeckSize();
   List<String> get deckNames => getDeckNames();
-
-  //verifica se acertou
-  void setAcertou(bool oi) {
-    _acertou = oi;
-  }
+  int get selectedDeckSize => _selectedDeckSize;
 
   //vira a carta
   void flipCard() {
@@ -45,7 +49,9 @@ class Controller extends ChangeNotifier {
 
   // adiciona um ponto ao score
   void addScore() {
-    _score = _score + 1;
+    if(_getCorrect){
+      _score = _score + 1;
+    }
     notifyListeners();
   }
 
@@ -57,7 +63,8 @@ class Controller extends ChangeNotifier {
 
   //confirma se a resposta esta correta
   void isCorrectAnswer() {
-    _correctAnswer = !_correctAnswer;
+    _getCorrect = !_getCorrect;
+    print(_getCorrect);
     notifyListeners();
   }
 
@@ -85,7 +92,8 @@ class Controller extends ChangeNotifier {
   //seleciona um deck
   void selectDeck(int i) {
     deckSelected = i;
-    _selectedDeck = _myDecks[i];
+    _selectedDeck.copyDeckFrom(_myDecks[i]);
+    _selectedDeckSize = _selectedDeck.getDeckSize();
     saveDeck();
     notifyListeners();
   }
@@ -101,7 +109,6 @@ class Controller extends ChangeNotifier {
   void selectCardOrAdd(String front, String back) {
     int i = 0;
     bool found = false;
-
     while ((i < _myDecks.length) && (!found)) {
       if (_selectedDeck.getFlashCard(i).getFrontSide() == front) {
         if (_selectedDeck.getFlashCard(i).getBackSide() == back) {
@@ -123,6 +130,7 @@ class Controller extends ChangeNotifier {
 
   // funcao utilizada na hora de criar um novo deck que remover um flashcard
   void removeCard(int index) {
+    addScore();
     _selectedDeck.removeFlashCard(_selectedDeck.getFlashCard(index));
     notifyListeners();
   }
@@ -171,6 +179,7 @@ class Controller extends ChangeNotifier {
   //verifica se o gameloop tem que continuar. true  = acabou o jogo e false = continua
   bool endCheckGameLoop() {
     if (_gameDeck.getDeckSize() == 0) {
+      resetScore();
       return true;
     } else {
       return false;
@@ -179,6 +188,7 @@ class Controller extends ChangeNotifier {
 
   //save o deck na memoria temporaria
   void saveDeck() {
+    Deck newDeck = Deck("");
     int i = 0;
     bool found = false;
     while ((i < _myDecks.length) && (!found)) {
@@ -189,7 +199,8 @@ class Controller extends ChangeNotifier {
       i++;
     }
     if (!found) {
-      _myDecks.add(_selectedDeck);
+      newDeck.copyDeckFrom(_selectedDeck);
+      _myDecks.add(newDeck);
     }
     notifyListeners();
   }

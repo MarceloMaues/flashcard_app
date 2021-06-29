@@ -151,7 +151,7 @@ class CheckboxShower extends StatelessWidget {
     return Consumer<Controller>(builder: (context, controller, child) {
       return Botaos(
         context: context,
-        value: controller.acertou,
+        value: controller.checkBoxUpdator,
       );
     });
   }
@@ -195,11 +195,11 @@ class Buttons extends StatelessWidget {
               child: Text("Random Flashcard"),
               onPressed: () {
                 controller.removeCard(0);
-                controller.randomCardGameDeck;
-
                 //condicional para verificar se pode ir para a tela de fim de jogo
                 if (controller.endCheckGameLoop() == true) {
                   Navigator.of(button).pushNamed('/PointsView');
+                }else{
+                  controller.randomCardGameDeck;
                 }
               },
             ),

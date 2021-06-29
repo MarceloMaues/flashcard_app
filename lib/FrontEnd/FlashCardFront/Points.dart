@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-int points = 5;
-int maxPoints = 10;
+import '../../Controller.dart';
+
+
 
 class Points extends StatelessWidget {
   @override
@@ -36,10 +38,15 @@ class Points extends StatelessWidget {
                 ),
               ]),
           Container(
-            child: ConstrainedBox(
-              constraints: BoxConstraints(maxWidth: 150),
-              child: Text('Points ${points}/${maxPoints}'),
-            ),
+            child:Consumer<Controller>(
+                builder: (context, controller, child) {
+                  int a = controller.score;
+                  return ConstrainedBox(
+                    constraints: BoxConstraints(maxWidth: 150),
+                    child: Text(
+                        'Points ${controller.score}/${controller.selectedDeckSize}'),
+                  );
+                }),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(20)),
               color: Color.fromRGBO(255, 255, 255, 1),

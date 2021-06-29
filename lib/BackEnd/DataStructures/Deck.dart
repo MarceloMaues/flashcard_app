@@ -63,4 +63,12 @@ class Deck {
     faces.removeAt(0);
     return faces;
   }
+
+  void copyDeckFrom(Deck deck){
+    int cardsAmount = deck.getDeckSize();
+    this._deckName = deck.getDeckName();
+    for(int i = 0;i<cardsAmount;i++){
+      this._deckCards.add(new FlashCard(deck.getFlashCard(i).getBackSide(),deck.getFlashCard(i).getFrontSide()));
+    }
+  }
 }
