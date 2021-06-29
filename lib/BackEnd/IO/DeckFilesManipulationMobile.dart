@@ -1,26 +1,26 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:path/path.dart'as p;
-import 'package:flashcard_app/BackEnd/IO/CardFile.dart';
 import 'package:flashcard_app/BackEnd/IO/DeckFile.dart';
 import 'package:flashcard_app/BackEnd/DataStructures/Deck.dart';
-import 'package:flashcard_app/BackEnd/DataStructures/FlashCard.dart';
+import 'package:path/path.dart' as p;
 
+
+///Classe usada para manipular arquivos no mobile
 class DeckFilesManipulation {
-  
-  Future<File> localFile(String fileName) async{
+  ///retorna o endereco do arquivo
+  Future<File> localFile(String fileName) async {
+    //pega o diretorio
     final directory = await getApplicationDocumentsDirectory();
     final path = directory.path;
-    final f = fileName+'.json';
+    final f = fileName + '.json';
     final completepath = p.join(path, f);
     File newfile = new File(completepath);
     return newfile;
   }
-  
+
+  ///Salva um string qualquer no arquivo json
   Future<int> saveFileString(String nameFile, String text) async {
     try {
       File file = await localFile(nameFile);
@@ -32,11 +32,12 @@ class DeckFilesManipulation {
     }
   }
 
-  //escreve no arquivo as informacoes do deck no formato json
+  ///escreve no arquivo as informacoes do deck no formato json
   Future<int> saveFileDeck(String nameFile, Deck deck) async {
     File file = await localFile(nameFile);
     String infoJson;
     try {
+      //formatacao para json
       infoJson = '{ "name": ' +
           deck.getDeckName() +
           ',"numCards": ' +
@@ -56,13 +57,15 @@ class DeckFilesManipulation {
       infoJson = infoJson + ']}';
       //escreve as informacao do deck no formato json
       await file.writeAsString(infoJson);
+      //caso consiga escrever no arquivo retorna 1
       return 1;
     } catch (e) {
+      //caso de algum problema retorna 0
       return 0;
     }
   }
 
-  //le o arquivo e retorna uma String com o conteudo do json
+  ///le o arquivo e retorna uma String com o conteudo do json
   Future<String> readFileString(String nameFile) async {
     File file = await localFile(nameFile);
     String info = '';
@@ -76,8 +79,8 @@ class DeckFilesManipulation {
     }
   }
 
-  //le o arquivo
-  Future<String> readFileDeck(String nameFile) async {
+  ///le o arquivo e retorna um Deck
+  Future<Deck> readFileDeck(String nameFile) async {
     File file = await localFile(nameFile);
     var dataName;
     String jsonString = '';
@@ -92,9 +95,9 @@ class DeckFilesManipulation {
         deck.addFlashCardString(DeckFile.fromJson(dataName).cards[i].front,
             DeckFile.fromJson(dataName).cards[i].back);
       }
-      return jsonString;
+      return deck;
     } catch (e) {
-      return jsonString;
+      return deck;
     }
   }
 }

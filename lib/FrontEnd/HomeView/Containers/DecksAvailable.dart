@@ -1,6 +1,10 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../../../Controller.dart';
+
+///Mostra os decks disponiveis
 class DecksAvailable extends StatelessWidget {
   List<String> entries;
   DecksAvailable({Key key,@required BuildContext context,@required this.entries}) : super(key: key);
@@ -14,6 +18,7 @@ class DecksAvailable extends StatelessWidget {
           itemBuilder: (BuildContext context, int index) {
             return InkWell(
                 onTap: () {
+                  Provider.of<Controller>(context,listen:false).selectDeck(index);
                   Navigator.of(context).pushNamed('/GameView');
                 },
                 child: Container(

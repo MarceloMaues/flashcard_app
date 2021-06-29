@@ -5,8 +5,8 @@ import 'package:provider/provider.dart';
 import '../../Controller.dart';
 import 'FlashCardFront.dart';
 
-int counterIsCorrect = 0;
 
+/// Cria a checkbox
 class Botaos extends StatelessWidget {
   bool value;
   Botaos({Key key, @required BuildContext context, @required this.value})
@@ -42,10 +42,8 @@ class Botaos extends StatelessWidget {
                     activeColor: Color.fromRGBO(87, 196, 229, 1),
                     onChanged: (value) {
                       _myBoolean = value;
-                      counterIsCorrect++;
-                      print(counterIsCorrect);
                       Provider.of<Controller>(screen, listen: false)
-                          .setAcertou(_myBoolean);
+                          .isCorrectAnswer();
                     }),
               ]),
         ),

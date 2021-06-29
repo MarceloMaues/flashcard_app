@@ -1,7 +1,11 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../../../Controller.dart';
+
+///Utilizado para dar nome aos decks
 class DeckNameBox extends StatelessWidget {
   DeckNameBox({Key key}) : super(key: key);
   TextEditingController deckName = TextEditingController();
@@ -23,7 +27,7 @@ class DeckNameBox extends StatelessWidget {
                 child: Align(
                   alignment: Alignment.center,
                   child: Text(
-                    'Name the new deck:',
+                    'Name the deck:',
                     style: TextStyle(
                       fontSize: 25.0,
                       color: Colors.white,
@@ -66,11 +70,7 @@ class DeckNameBox extends StatelessWidget {
           height: 180,
 
         ),
-        Row(
-          children: <Widget>[
             SizedBox(height: 100),
-          ],
-        ),
         Row(
           crossAxisAlignment: CrossAxisAlignment.end,
           mainAxisAlignment: MainAxisAlignment.center,
@@ -80,13 +80,13 @@ class DeckNameBox extends StatelessWidget {
                 String noSpace = deckName.text.trim();
                 if(deckName.text.isNotEmpty && noSpace.isNotEmpty){
                   try {
-                    //save deck + go to edit deck here
+                    Provider.of<Controller>(context,listen:false).createNewDeck(noSpace);
                     AwesomeDialog(
                       context: context,
                       dialogType: DialogType.SUCCES,
                       animType: AnimType.BOTTOMSLIDE,
                       title: 'Congratulations!',
-                      desc: 'You created a deck named '+noSpace,
+                      desc: 'The deck name is:'+noSpace,
                       btnOkOnPress: () { Navigator.of(context).pushNamed('/EditDeckView');},
                     )..show();
 

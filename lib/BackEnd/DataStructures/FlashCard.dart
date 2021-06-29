@@ -3,10 +3,11 @@ import 'package:flashcard_app/BackEnd/DataStructures/CardSideIndicator.dart';
 const String separator = "=";
 
 class FlashCard {
-  String _frontSide = '',
-         _backSide  = '';
+  //atributos
+  String _frontSide = '', _backSide = '';
   CardSideIndicator _openSide = CardSideIndicator.FRONTSIDE;
 
+  //construtor
   FlashCard(String back, String front) {
     this._frontSide = front;
     this._backSide = back;
@@ -36,6 +37,7 @@ class FlashCard {
     return this._openSide;
   }
 
+  // vira o lado da carta
   void turnOpenSide() {
     if (this._openSide == CardSideIndicator.FRONTSIDE) {
       this._openSide = CardSideIndicator.BACKSIDE;
@@ -44,44 +46,7 @@ class FlashCard {
     }
   }
 
-  bool decreasingAlphabeticOrder(FlashCard card) {
-    List<int> thisCardFrontSide = this._frontSide.toUpperCase().codeUnits;
-    List<int> cardFrontSide = this._frontSide.toUpperCase().codeUnits;
-    int maxSize, letterLocal = 0;
-    bool status = true;
-    if(thisCardFrontSide.length<cardFrontSide.length){
-      maxSize=thisCardFrontSide.length;
-    }else{
-      maxSize=cardFrontSide.length;
-    }
-    while((thisCardFrontSide[letterLocal]==cardFrontSide[letterLocal])&&(letterLocal<maxSize)){
-      letterLocal=letterLocal+1;
-    }
-    if (thisCardFrontSide[letterLocal]<cardFrontSide[letterLocal]) {
-      status = false;
-    }
-    return status;
-  }
-
-  bool growingAlphabeticOrder(FlashCard card) {
-    List<int> thisCardFrontSide = this._frontSide.toUpperCase().codeUnits;
-    List<int> cardFrontSide = this._frontSide.toUpperCase().codeUnits;
-    int maxSize, letterLocal = 0;
-    bool status = true;
-    if(thisCardFrontSide.length<cardFrontSide.length){
-      maxSize=thisCardFrontSide.length;
-    }else{
-      maxSize=cardFrontSide.length;
-    }
-    while((thisCardFrontSide[letterLocal]==cardFrontSide[letterLocal])&&(letterLocal<maxSize)){
-      letterLocal=letterLocal+1;
-    }
-    if (thisCardFrontSide[letterLocal]>cardFrontSide[letterLocal]) {
-      status = false;
-    }
-    return status;
-  }
-
+  // compara o flashcard para o frontside e igual ao backside
   bool compareFlashCard(FlashCard card) {
     bool duplicated = false;
     if ((this._frontSide == card.getFrontSide()) ||

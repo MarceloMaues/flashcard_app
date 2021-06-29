@@ -3,10 +3,10 @@ import 'package:flashcard_app/Controller.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 
-///Contem os botoes da tela inicial 
-class BottomBar extends StatelessWidget {
-  const BottomBar({Key key}) : super(key: key);
+class BottomEditBar extends StatelessWidget {
+  const BottomEditBar({Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
@@ -22,14 +22,9 @@ class BottomBar extends StatelessWidget {
                   foregroundColor: MaterialStateProperty.all<Color>(Color(0xff8FDC97)),
                 ),
                 onPressed: () {
-                  Provider.of<Controller>(context, listen: false).importDeck();
+                  Provider.of<Controller>(context,listen: false).exportDeck();
                 },
-                child: Text('Import',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16
-                    )
-                ),
+                child: Icon(TablerIcons.file_export),
               )
           ),
           Expanded(
@@ -39,24 +34,10 @@ class BottomBar extends StatelessWidget {
                   foregroundColor:MaterialStateProperty.all<Color>(Color(0xff8FDC97)),
                 ),
                 onPressed: () {
-                  AwesomeDialog(
-                    context: context,
-                    dialogType: DialogType.NO_HEADER,
-                    animType: AnimType.BOTTOMSLIDE,
-                    title: 'This app was made by:',
-                    desc: 'Leonardo de Jesus Diz Conde;\n'
-                        +  'Marcelo Maués Botelho;\n'
-                        +  'Victor Yuji Saito;\n'
-                        +  'Vinicius Prado Vasconcelos;',
-                    btnOkOnPress: () {},
-                  )..show();
+                  Provider.of<Controller>(context,listen: false).removeDeck();
+                  Navigator.of(context).pop();
                 },
-                child: Text('About',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16
-                    )
-                ),
+                child: Icon(TablerIcons.trash)
               )
           ),
         ],

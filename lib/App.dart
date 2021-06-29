@@ -7,7 +7,10 @@ import 'package:provider/provider.dart';
 import 'Controller.dart';
 import 'FrontEnd/CreateDeckView/CreateDeckView.dart';
 import 'package:flashcard_app/FrontEnd/FlashCardFront/FlashCardFront.dart';
+import 'FrontEnd/EditDeckView/EditCardDeck.dart';
 import 'FrontEnd/FlashCardFront/Points.dart';
+
+
 
 void main() {
   runApp(
@@ -18,6 +21,7 @@ void main() {
   );
 }
 
+///Contem a tela inicial
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -29,6 +33,7 @@ class MyApp extends StatelessWidget {
         '/CreateDeckView':(context) => CreateDeckView(),
         '/GameView':(context) => GameView(),
         '/EditDeckView':(context) => DeckEdit(),
+        '/EditCardView': (context)=> EditCardView(),
         '/PointsView':(context) => Points(),
       },
     );

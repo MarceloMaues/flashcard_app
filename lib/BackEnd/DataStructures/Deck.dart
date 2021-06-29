@@ -2,9 +2,11 @@ import 'package:flashcard_app/BackEnd/DataStructures/FlashCard.dart';
 import 'dart:math';
 
 class Deck {
+  //atributos do deck
   List<FlashCard> _deckCards = [];
   String _deckName = '';
 
+  //construtor
   Deck(String name) {
     this._deckName = name;
   }
@@ -28,6 +30,11 @@ class Deck {
     return this._deckCards[local];
   }
 
+  FlashCard setFlashCard(int local, String front, String back) {
+    this._deckCards[local].setBackSide(back);
+    this._deckCards[local].setFrontSide(front);
+  }
+
   void addFlashCard(FlashCard card) {
     this._deckCards.add(card);
   }
@@ -41,11 +48,27 @@ class Deck {
     this._deckCards.remove(card);
   }
 
-  FlashCard getRandomCard() {
+  void getRandomCard() {
+    FlashCard inicio = _deckCards[0];
     Random random = new Random();
     int randomNumber = random.nextInt(_deckCards.length);
-    return this._deckCards[randomNumber];
+    _deckCards[0] = _deckCards[randomNumber];
+    this._deckCards[randomNumber] = inicio;
   }
 
-  shuffle() {}
+  List<String> getFirstCardAsSting() {
+    List<String> faces = [];
+    faces.add(_deckCards[0].getFrontSide());
+    faces.add(_deckCards[0].getBackSide());
+    faces.removeAt(0);
+    return faces;
+  }
+
+  void copyDeckFrom(Deck deck){
+    int cardsAmount = deck.getDeckSize();
+    this._deckName = deck.getDeckName();
+    for(int i = 0;i<cardsAmount;i++){
+      this._deckCards.add(new FlashCard(deck.getFlashCard(i).getBackSide(),deck.getFlashCard(i).getFrontSide()));
+    }
+  }
 }
