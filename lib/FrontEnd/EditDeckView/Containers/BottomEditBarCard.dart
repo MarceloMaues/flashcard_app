@@ -5,6 +5,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 
+
+///cria os botões da parte inferior da pagina edit card
 class BottomEditBarCard extends StatelessWidget {
   const BottomEditBarCard({Key key}) : super(key: key);
   @override

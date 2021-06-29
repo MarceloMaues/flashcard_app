@@ -1,13 +1,13 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
-import '../../../Controller.dart';
 
-///Mostra os decks disponiveis
+/// Direciona os botes de deck disponivel para o menu de decks ou para tela de jogo
 class DecksAvailable extends StatelessWidget {
   List<String> entries;
-  DecksAvailable({Key key,@required BuildContext context,@required this.entries}) : super(key: key);
+  DecksAvailable({Key? key,required BuildContext context,required this.entries}) : super(key: key);
+
+
 
   @override
   Widget build(BuildContext context,) {
@@ -18,7 +18,6 @@ class DecksAvailable extends StatelessWidget {
           itemBuilder: (BuildContext context, int index) {
             return InkWell(
                 onTap: () {
-                  Provider.of<Controller>(context,listen:false).selectDeck(index);
                   Navigator.of(context).pushNamed('/GameView');
                 },
                 child: Container(
@@ -27,7 +26,7 @@ class DecksAvailable extends StatelessWidget {
                         borderRadius: BorderRadius.circular(16),
                         color: Color(0xff57C4E5)),
                     child: Center(
-                      child: Text(entries[index],
+                      child: Text('Deck ${entries[index]}',
                           style: TextStyle(color: Colors.white)),
                     )
                 )

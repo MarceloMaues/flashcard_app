@@ -4,6 +4,8 @@ import 'package:provider/provider.dart';
 import '../../Controller.dart';
 import 'Containers/ScreenArguments.dart';
 
+
+///Edição do texto da frente e verso do card
 class EditCardView extends StatelessWidget{
   EditCardView({Key key}) : super(key: key);
   @override
