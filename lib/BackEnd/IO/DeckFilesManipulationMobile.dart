@@ -1,13 +1,16 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:flashcard_app/BackEnd/IO/CardFile.dart';
 import 'package:flashcard_app/BackEnd/IO/DeckFile.dart';
 import 'package:flashcard_app/BackEnd/DataStructures/Deck.dart';
 import 'package:path/path.dart' as p;
 
+///Classe usada para manipular arquivos no mobile
 class DeckFilesManipulation {
-  //retorna o endereco do arquivo
+  ///retorna o endereco do arquivo
   Future<File> localFile(String fileName) async {
     //pega o diretorio
     final directory = await getApplicationDocumentsDirectory();
@@ -18,7 +21,7 @@ class DeckFilesManipulation {
     return newfile;
   }
 
-  //Salva um string qualquer no arquivo json
+  ///Salva um string qualquer no arquivo json
   Future<int> saveFileString(String nameFile, String text) async {
     try {
       File file = await localFile(nameFile);
@@ -30,7 +33,7 @@ class DeckFilesManipulation {
     }
   }
 
-  //escreve no arquivo as informacoes do deck no formato json
+  ///escreve no arquivo as informacoes do deck no formato json
   Future<int> saveFileDeck(String nameFile, Deck deck) async {
     File file = await localFile(nameFile);
     String infoJson;
@@ -63,7 +66,7 @@ class DeckFilesManipulation {
     }
   }
 
-  //le o arquivo e retorna uma String com o conteudo do json
+  ///le o arquivo e retorna uma String com o conteudo do json
   Future<String> readFileString(String nameFile) async {
     File file = await localFile(nameFile);
     String info = '';
@@ -77,7 +80,7 @@ class DeckFilesManipulation {
     }
   }
 
-  //le o arquivo e retorna um Deck
+  ///le o arquivo e retorna um Deck
   Future<Deck> readFileDeck(String nameFile) async {
     File file = await localFile(nameFile);
     var dataName;

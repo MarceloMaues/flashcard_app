@@ -4,6 +4,7 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 
+///Contem os botoes da tela inicial 
 class BottomBar extends StatelessWidget {
   const BottomBar({Key key}) : super(key: key);
   @override

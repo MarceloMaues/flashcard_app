@@ -5,6 +5,8 @@ import '../../Controller.dart';
 
 
 
+
+///Cria a tela que mostra a pontuacao final
 class Points extends StatelessWidget {
   @override
   Widget build(BuildContext screen) {

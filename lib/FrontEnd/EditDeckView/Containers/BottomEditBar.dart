@@ -5,6 +5,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 
+
+/// cria os botoes inferiores da pagina inicial
 class BottomEditBar extends StatelessWidget {
   const BottomEditBar({Key key}) : super(key: key);
   @override

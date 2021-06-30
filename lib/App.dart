@@ -10,7 +10,7 @@ import 'package:flashcard_app/FrontEnd/FlashCardFront/FlashCardFront.dart';
 import 'FrontEnd/EditDeckView/EditCardDeck.dart';
 import 'FrontEnd/FlashCardFront/Points.dart';
 
-
+///Inicia o APP
 void main() {
   runApp(
     ChangeNotifierProvider(
@@ -20,6 +20,7 @@ void main() {
   );
 }
 
+///Contem a tela inicial
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

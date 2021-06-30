@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flashcard_app/FrontEnd/CreateDeckView/Containers/DeckNameBox.dart';
 
+
+///Cria a tela de dar nome aos decks
 class CreateDeckView extends StatelessWidget {
   CreateDeckView({Key key}) : super(key: key);
   @override

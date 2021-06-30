@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 
 
+///Constroi a tela inicial
 
 class HomeView extends StatelessWidget{
   HomeView({Key key}) : super(key: key);
@@ -52,5 +53,6 @@ class HomeView extends StatelessWidget{
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         bottomNavigationBar: BottomBar(key: key)
     );
+
   }
 }

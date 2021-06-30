@@ -4,6 +4,8 @@ import 'package:provider/provider.dart';
 
 import '../../../Controller.dart';
 
+
+/// Direciona os botes de deck disponivel para o menu de decks ou para tela de jogo
 class DecksAvailable extends StatelessWidget {
   List<String> entries;
   DecksAvailable({Key key,@required BuildContext context,@required this.entries}) : super(key: key);
@@ -26,7 +28,7 @@ class DecksAvailable extends StatelessWidget {
                         borderRadius: BorderRadius.circular(16),
                         color: Color(0xff57C4E5)),
                     child: Center(
-                      child: Text(entries[index],
+                      child: Text('Deck ${entries[index]}',
                           style: TextStyle(color: Colors.white)),
                     )
                 )

@@ -6,6 +6,8 @@ import 'package:provider/provider.dart';
 import '../../../Controller.dart';
 import 'ScreenArguments.dart';
 
+
+///cria o formato dos cards
 class MiniFlashCard  extends StatelessWidget {
   String oldFront, oldBack;
   int index;

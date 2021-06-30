@@ -6,6 +6,8 @@ import 'package:provider/provider.dart';
 
 import '../../Controller.dart';
 
+
+///Permite a edicao dos decks
 class DeckEdit extends StatelessWidget {
   DeckEdit({Key key}) : super (key: key);
   @override
@@ -60,6 +62,7 @@ class DeckEdit extends StatelessWidget {
 }
 
 
+///Permite a criação de Flashcard
 class CardCreation extends StatelessWidget {
   int globalIndex;
   @override

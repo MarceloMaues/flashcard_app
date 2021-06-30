@@ -8,27 +8,21 @@ import 'package:flashcard_app/BackEnd/IO/DeckFilesManipulationMobile.dart'
 class Controller extends ChangeNotifier {
   DeckFilesManipulation fileIO = DeckFilesManipulation();
 
+  ///Variavéis privadas
   Deck _selectedDeck = null;
   int _selectedDeckSize = 0;
-
-
-
   int _score = 0;
   bool _getCorrect = false;
-
-
   List<Deck> _myDecks = [];
-
   Deck _gameDeck;
   FlashCard _actualGame;
   bool _backCard = false;
   bool _correctAnswer = false;
-
-
   int deckSelected = -1;
   int cardSelected = -1;
   List<String> gameActualCard;
 
+  ///Getters públicos
   int get score => _score;
   bool get backCard => _backCard;
   bool get checkBoxUpdator => _getCorrect;
@@ -41,13 +35,13 @@ class Controller extends ChangeNotifier {
   List<String> get deckNames => getDeckNames();
   int get selectedDeckSize => _selectedDeckSize;
 
-  //vira a carta
+  ///Vira a carta
   void flipCard() {
     _backCard = !_backCard;
     notifyListeners();
   }
 
-  // adiciona um ponto ao score
+  ///Adiciona um ponto ao score
   void addScore() {
     if(_getCorrect){
       _score = _score + 1;
@@ -55,20 +49,20 @@ class Controller extends ChangeNotifier {
     notifyListeners();
   }
 
-  //reseta o score
+  ///Reseta o score
   void resetScore() {
     _score = 0;
     notifyListeners();
   }
 
-  //confirma se a resposta esta correta
+  ///Confirma se a resposta esta correta
   void isCorrectAnswer() {
     _getCorrect = !_getCorrect;
     print(_getCorrect);
     notifyListeners();
   }
 
-  //devolve o nome do deck
+  ///Devolve o nome do deck
   List<String> getDeckNames() {
     List<String> deckNames = [];
     for (int i = 0; i < _myDecks.length; i++) {
@@ -77,7 +71,7 @@ class Controller extends ChangeNotifier {
     return deckNames;
   }
 
-  //retorna as faces de todas os flashcard dentro do deck. Utilizada para mostrar as faces na edicao de deck
+  ///Retorna as faces de todas os flashcard dentro do deck. Utilizada para mostrar as faces na edicao de deck
   List<List<String>> getDeckFaces() {
     List<List<String>> faces = [];
     faces.add([]);
@@ -89,7 +83,7 @@ class Controller extends ChangeNotifier {
     return faces;
   }
 
-  //seleciona um deck
+  ///Seleciona um deck
   void selectDeck(int i) {
     deckSelected = i;
     _selectedDeck.copyDeckFrom(_myDecks[i]);
@@ -98,14 +92,14 @@ class Controller extends ChangeNotifier {
     notifyListeners();
   }
 
-  // cria um novo deck
+  ///Cria um novo deck
   void createNewDeck(String deckName) {
     _selectedDeck = Deck(deckName);
     deckSelected = _myDecks.length;
     saveDeck();
   }
 
-  // selecionar uma carta ou adicionar
+  ///Selecionar uma carta ou adicionar
   void selectCardOrAdd(String front, String back) {
     int i = 0;
     bool found = false;
@@ -121,21 +115,21 @@ class Controller extends ChangeNotifier {
     notifyListeners();
   }
 
-  // funcao utilizada na hora de criar um novo deck que adicionar um flashcard
+  ///Funcao utilizada na hora de criar um novo deck que adicionar um flashcard
   void addCard(String frontName, String backName) {
     _selectedDeck.addFlashCard(FlashCard(frontName, backName));
     saveDeck();
     notifyListeners();
   }
 
-  // funcao utilizada na hora de criar um novo deck que remover um flashcard
+  ///funcao utilizada na hora de criar um novo deck que remover um flashcard
   void removeCard(int index) {
     addScore();
     _selectedDeck.removeFlashCard(_selectedDeck.getFlashCard(index));
     notifyListeners();
   }
 
-  // funcao utilizada na hora de editar um flashcard
+  ///funcao utilizada na hora de editar um flashcard
   void editCard(int i, String newBack, String newFront) {
     if (i >= 0) {
       _myDecks[deckSelected].setFlashCard(i, newFront, newBack);
@@ -150,33 +144,33 @@ class Controller extends ChangeNotifier {
 
   // funcoes para o gameloop
 
-  //devolve o nome do deck que esta sendo jogado
+  ///Devolve o nome do deck que esta sendo jogado
   String getSelectedDeckName() {
     _gameDeck = _selectedDeck;
     return _gameDeck.getDeckName();
   }
 
-  //devolve o frontsite da carta na posicao 'num' dentro do gameDeck
+  ///Devolve o frontsite da carta na posicao 'num' dentro do gameDeck
   String getGameDeckCardFront(int num) {
     return _gameDeck.getFlashCard(num).getFrontSide();
   }
 
-  //devolve o backside da carta na posicao 'num' dentro do gameDeck
+  ///Devolve o backside da carta na posicao 'num' dentro do gameDeck
   String getGameDeckCardBack(int num) {
     return _gameDeck.getFlashCard(num).getBackSide();
   }
 
-  //remove o card do GameDeck
+  ///Remove o card do GameDeck
   void removeCardGameDeck(int num) {
     _gameDeck.removeFlashCard(_gameDeck.getFlashCard(num));
   }
 
-  //muda as posicoes das cartas do deck aleatoriamente
+  ///Muda as posicoes das cartas do deck aleatoriamente
   void randomCardGameDeck() {
     _gameDeck.getRandomCard();
   }
 
-  //verifica se o gameloop tem que continuar. true  = acabou o jogo e false = continua
+  ///Verifica se o gameloop tem que continuar. true  = acabou o jogo e false = continua
   bool endCheckGameLoop() {
     if (_gameDeck.getDeckSize() == 0) {
       resetScore();
@@ -186,7 +180,7 @@ class Controller extends ChangeNotifier {
     }
   }
 
-  //save o deck na memoria temporaria
+  ///Save o deck na memoria temporaria
   void saveDeck() {
     Deck newDeck = Deck("");
     int i = 0;
@@ -205,19 +199,19 @@ class Controller extends ChangeNotifier {
     notifyListeners();
   }
 
-  //remove o deck da memoria temporaria
+  ///Remove o deck da memoria temporaria
   void removeDeck() {
     _myDecks.removeAt(deckSelected);
     notifyListeners();
   }
 
-  //salva um arquivo do deck na plataforma utilizada
+  ///Salva um arquivo do deck na plataforma utilizada
   void importDeck() async {
     _selectedDeck = await fileIO.readFileDeck("a");
     saveDeck();
   }
 
-  //le um arquivo json e salva o deck lido na memoria temporaria
+  ///Le um arquivo json e salva o deck lido na memoria temporaria
   void exportDeck() async {
     await fileIO.saveFileDeck('FlashCard', _selectedDeck);
     notifyListeners();

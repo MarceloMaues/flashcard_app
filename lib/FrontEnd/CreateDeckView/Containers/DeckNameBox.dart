@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 
 import '../../../Controller.dart';
 
+///Utilizado para dar nome aos decks
 class DeckNameBox extends StatelessWidget {
   DeckNameBox({Key key}) : super(key: key);
   TextEditingController deckName = TextEditingController();

@@ -8,7 +8,7 @@
             "name": "flashcard_app",
             "request": "launch",
             "type": "dart",
-            "program": "lib/App.dart",
+            "program": "lib/main.dart",
         },
         {
             "name": "flashcard_app (profile mode)",

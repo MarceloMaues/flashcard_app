@@ -4,6 +4,8 @@ import 'package:provider/provider.dart';
 import '../../Controller.dart';
 import "Botaos.dart";
 
+
+/// Usada para chamar a FlashcardFront e a appbar
 class GameView extends StatelessWidget {
   GameView({Key key}) : super(key: key);
   @override
@@ -35,6 +37,7 @@ class GameView extends StatelessWidget {
 int counterIsCorrect = 0;
 int counterIsWrong = 0;
 
+///Cria a tela inicial, contem a tela, os botoes e a checkbox
 class FlashcardFront extends StatelessWidget {
   @override
   Widget build(BuildContext screen) {
@@ -145,6 +148,7 @@ class FlashcardFront extends StatelessWidget {
   }
 }
 
+/// Utilizada para atualizar a checkbox
 class CheckboxShower extends StatelessWidget {
   @override
   Widget build(BuildContext checkbox) {
@@ -157,6 +161,7 @@ class CheckboxShower extends StatelessWidget {
   }
 }
 
+///Contem os butoes que trocam para o proximo flashcard ou para um aleatorio
 class Buttons extends StatelessWidget {
   @override
   Widget build(BuildContext button) {

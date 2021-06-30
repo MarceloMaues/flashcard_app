@@ -6,7 +6,7 @@ import '../../Controller.dart';
 import 'FlashCardFront.dart';
 
 
-
+/// Cria a checkbox
 class Botaos extends StatelessWidget {
   bool value;
   Botaos({Key key, @required BuildContext context, @required this.value})

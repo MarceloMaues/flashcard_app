@@ -4,6 +4,7 @@ part 'DeckFile.g.dart';
 
 @JsonSerializable()
 class DeckFile {
+  ///Classe de mapeamento do Deck para Json e vice versa
   String name;
   int numCards;
   List<CardFile> cards;
