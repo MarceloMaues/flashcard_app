@@ -1,16 +1,18 @@
 # flashcard_app
 
-A new Flutter project.
+Um projeto feito para a matéria de Arquitetura de software
 
 ## Getting Started
+- [Instale o Dart](https://dart.dev/get-dart) 
+- [Instale o Flutter](https://flutter.dev/docs/get-started/install) 
+- Instale esse projeto;
+- Configure a sua IDE de preferencias com as configurações e plugins necessários para o Flutter
+- Utilize o arquivo pubspec.yaml para obter as bibliotecas necessárias
 
-This project is a starting point for a Flutter application.
+E agora tudo está pronto!
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Feito por:
+- Leonardo de Jesus Diz Conde
+- Marcelo Maués Batistas de Souza
+- Victor Yuji Saito
+- Vinicius Prado Vasconcelos
