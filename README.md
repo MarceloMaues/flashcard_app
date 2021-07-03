@@ -12,7 +12,7 @@ Um projeto feito para a matéria de Arquitetura de software
 E agora tudo está pronto!
 
 ## Feito por:
-- Leonardo de Jesus Diz Conde
+- Leonardo de Jesus Diz Conde  
 - Marcelo Maués Batistas de Souza
 - Victor Yuji Saito
 - Vinicius Prado Vasconcelos
